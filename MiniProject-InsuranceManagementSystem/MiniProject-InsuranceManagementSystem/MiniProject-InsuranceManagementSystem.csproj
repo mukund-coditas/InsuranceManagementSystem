@@ -128,7 +128,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginRegisterController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,6 +240,17 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\LoginRegister\Index.cshtml" />
+    <Content Include="Views\LoginRegister\LoginUser.cshtml" />
+    <Content Include="Views\LoginRegister\Registration.cshtml" />
+    <Content Include="Views\LoginRegister\RolesFilterMethod.cshtml" />
+    <Content Include="Views\LoginRegister\successed.cshtml" />
+    <Content Include="Views\LoginRegister\failure.cshtml" />
+    <Content Include="Views\Admin\AdminProfilePage.cshtml" />
+    <Content Include="Views\Agent\AgentProfilePage.cshtml" />
+    <Content Include="Views\User\UserProfilePage.cshtml" />
+    <Content Include="Views\Visitor\VisitorDashboard.cshtml" />
+    <Content Include="Views\Visitor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
