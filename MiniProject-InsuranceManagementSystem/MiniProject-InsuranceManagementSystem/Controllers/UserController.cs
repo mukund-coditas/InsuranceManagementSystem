@@ -18,6 +18,8 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             {
                 return RedirectToAction("AccessDenied","SuccessFailure");
             }
+
+
             ViewBag.FirstName = Session["FirstName"];
             ViewBag.LastName = Session["LastName"];
             return View();

@@ -21,6 +21,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             {
                 return RedirectToAction("AccessDenied", "SuccessFailure");
             }
+
             return View();
 
           }

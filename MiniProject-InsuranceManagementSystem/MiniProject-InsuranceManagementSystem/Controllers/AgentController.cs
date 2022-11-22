@@ -29,6 +29,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             {
                 return RedirectToAction("AccessDenied", "SuccessFailure");
             }
+
             return RedirectToAction("AddInsurance");
         }
 
@@ -38,6 +39,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             {
                 return RedirectToAction("AccessDenied","SuccessFailure");
             }
+
             Insurance insurance = new Insurance();
             return View(insurance);
    
