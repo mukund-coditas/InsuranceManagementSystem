@@ -25,20 +25,6 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 var result = (from data in entities.Users select data).ToList();
                 return View(result);
             }
-
-            public ActionResult successed()
-            {
-
-                return View();
-            }
-
-            public ActionResult failure()
-            {
-                return View();
-            }
-
-
-
             public ActionResult RolesFilterMethod()
             {
                 return View();
@@ -99,7 +85,9 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                         string ActionName = (from r in entities.Roles where info.RoleId == r.RoleId select r.RoleName).First();
                         string ControllerName = ActionName;
                         ActionName += "ProfilePage";
-
+                         Session["CurrentUserId"]= info.UserId;
+                         Session["FirstName"] = info.FirstName;
+                         Session["LastName"] = info.LastName;
                         return RedirectToAction(ActionName, ControllerName);
 
                     }
@@ -110,12 +98,18 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 catch (Exception ex)
                 {
 
-                    return RedirectToAction("failure");
+                    return RedirectToAction("Failure","SuccessFailure");
                 }
 
 
             }
 
+        public ActionResult LogoutUser()
+        {
+            Session.Clear();
+            return RedirectToAction("LoginUser","LoginRegister");
         }
+
+    }
     }
 

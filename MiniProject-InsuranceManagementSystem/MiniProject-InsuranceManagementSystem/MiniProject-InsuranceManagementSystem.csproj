@@ -132,6 +132,7 @@
     <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginRegisterController.cs" />
+    <Compile Include="Controllers\SuccessFailureController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -244,13 +245,14 @@
     <Content Include="Views\LoginRegister\LoginUser.cshtml" />
     <Content Include="Views\LoginRegister\Registration.cshtml" />
     <Content Include="Views\LoginRegister\RolesFilterMethod.cshtml" />
-    <Content Include="Views\LoginRegister\successed.cshtml" />
-    <Content Include="Views\LoginRegister\failure.cshtml" />
     <Content Include="Views\Admin\AdminProfilePage.cshtml" />
     <Content Include="Views\Agent\AgentProfilePage.cshtml" />
     <Content Include="Views\User\UserProfilePage.cshtml" />
     <Content Include="Views\Visitor\VisitorDashboard.cshtml" />
     <Content Include="Views\Visitor\Index.cshtml" />
+    <Content Include="Views\Agent\AddInsurance.cshtml" />
+    <Content Include="Views\SuccessFailure\Failure.cshtml" />
+    <Content Include="Views\SuccessFailure\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

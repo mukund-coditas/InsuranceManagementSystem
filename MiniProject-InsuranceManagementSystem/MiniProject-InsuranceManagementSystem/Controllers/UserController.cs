@@ -12,11 +12,15 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         {
             return View();
         }
-
         public ActionResult UserProfilePage()
         {
+            if (Session.Count < 1)
+            {
+                return RedirectToAction("AccessDenied","SuccessFailure");
+            }
+            ViewBag.FirstName = Session["FirstName"];
+            ViewBag.LastName = Session["LastName"];
             return View();
-
         }
     }
 }

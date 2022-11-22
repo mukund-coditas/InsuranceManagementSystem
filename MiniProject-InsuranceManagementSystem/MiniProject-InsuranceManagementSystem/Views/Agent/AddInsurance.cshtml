@@ -1,0 +1,61 @@
+﻿@model MiniProject_InsuranceManagementSystem.Models.Insurance
+
+@{
+    ViewBag.Title = "AddInsurance";
+}
+
+<h2 style="color:royalblue;font:bold;  border-bottom:0.1rem inset royalblue;">Agent Dashboard : </h2>
+
+
+@using (Html.BeginForm("AddInsurance","Agent"))
+{
+    <div class="col-12" style="margin:2rem 0">
+        <label for="insurances" class="form-label">Choose insurance : </label>
+        <select name="insurances" id="insurances" class="custom-list-items">
+            <option value="Life Insurance">Life Insurance</option>
+            <option value="Pension Plans">Pension Plans</option>
+            <option value="Health Insurance">Health Insurance</option>
+            <option value="Home Insurance">Home Insurance</option>
+            <option value="Automobile Insurance">Automobile Insurance</option>
+            <option value="Travel Insurance">Travel Insurance</option>
+        </select>
+    </div>
+
+    <div class="col-12" style="margin-bottom:1rem">
+        <label for="subtype" class="form-label">Choose SubCategory : </label>
+        <select name="subtype" id="subtype">
+            <option value="Bike">For Bike</option>
+            <option value="Car">For Car</option>
+            <option value="Rental Property">Rental Property</option>
+            <option value="HomeOwner Property">HomeOwner Property</option>
+            <option value="Term Life">Term Life</option>
+            <option value="Whole Life">Whole Life</option>
+            <option value="none" selected>None</option>
+
+        </select>
+    </div>
+    <div class="col-12" style="margin-bottom:1rem">
+        <label for="amount" class="form-label">Amount : </label>
+        <input type="number" class="form-control" id="amount" name="amount" required placeholder="Enter Amount">
+    </div>
+    <div class="col-12" style="margin-bottom:1rem">
+        <label for="yearlypremium" class="form-label">Yearly Premium</label>
+        <input type="number" class="form-control" id="yearlypremium" name="yearlypremium" required placeholder="Premium">
+    </div>
+    <div class="col-12" style="margin-bottom:1rem">
+        <label for="insuranceprovider" class="form-label">Insurance Provider</label>
+        <input type="text" class="form-control" id="insuranceprovider" name="insuranceprovider" required placeholder="Insurance Provider">
+    </div>
+    <div class="col-12" style="margin-bottom:1rem">
+        <label for="filterparameter" class="form-label">Additional Info </label>
+        <input type="text" class="form-control" id="filterparameter" name="filterparameter" placeholder="Additional Info">
+    </div>
+    <div>
+        <input type="submit" class="btn btn-primary btn-md btn-block" style="margin-top:1.4rem" value="Add Insurance" />
+    </div>
+
+}
+
+<div style="margin-top:1rem">
+    @Html.ActionLink("Logout", "LogoutUser", "LoginRegister")
+</div>
