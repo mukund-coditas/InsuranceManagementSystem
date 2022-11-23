@@ -5,14 +5,9 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="InsuranceManagementSystemDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.AutomobileInsurance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="AutomobileInsurance">
           <Key>
-            <PropertyRef Name="VehicleType" />
-            <PropertyRef Name="VehicleNumber" />
-            <PropertyRef Name="VehicleAge" />
-            <PropertyRef Name="PlanDuration" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="CustomerId" Type="int" />
           <Property Name="VehicleType" Type="varchar" MaxLength="60" Nullable="false" />
@@ -20,6 +15,7 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.AutomobileInsuranc
           <Property Name="VehicleNumber" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="VehicleAge" Type="int" Nullable="false" />
           <Property Name="PlanDuration" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -31,14 +27,9 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.AutomobileInsuranc
           <Property Name="MobileNumber" Type="bigint" Nullable="false" />
           <Property Name="UserId" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.HealthInsurance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HealthInsurance">
           <Key>
-            <PropertyRef Name="Age" />
-            <PropertyRef Name="Gender" />
-            <PropertyRef Name="PlanDuration" />
-            <PropertyRef Name="InsuranceAmount" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="CustomerId" Type="int" />
           <Property Name="Age" Type="int" Nullable="false" />
@@ -46,16 +37,11 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.HealthInsurance' d
           <Property Name="HealthCondition" Type="varchar" MaxLength="60" />
           <Property Name="PlanDuration" Type="int" Nullable="false" />
           <Property Name="InsuranceAmount" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.HomeInsurance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HomeInsurance">
           <Key>
-            <PropertyRef Name="BuildingType" />
-            <PropertyRef Name="City" />
-            <PropertyRef Name="HouseNumber" />
-            <PropertyRef Name="Valuation" />
-            <PropertyRef Name="PlanDuration" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="CustomerId" Type="int" />
           <Property Name="BuildingType" Type="varchar" MaxLength="60" Nullable="false" />
@@ -64,6 +50,7 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.HomeInsurance' doe
           <Property Name="HouseNumber" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="Valuation" Type="bigint" Nullable="false" />
           <Property Name="PlanDuration" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Insurances">
           <Key>
@@ -79,17 +66,9 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.HomeInsurance' doe
           <Property Name="ReleaseDate" Type="date" Nullable="false" />
           <Property Name="UserId" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.LifeInsurance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="LifeInsurance">
           <Key>
-            <PropertyRef Name="Age" />
-            <PropertyRef Name="Gender" />
-            <PropertyRef Name="Occupation" />
-            <PropertyRef Name="Plan_Duration" />
-            <PropertyRef Name="HealthCondition" />
-            <PropertyRef Name="PensionStartYear" />
-            <PropertyRef Name="InsuranceAmount" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="CustomerId" Type="int" />
           <Property Name="Age" Type="int" Nullable="false" />
@@ -99,15 +78,11 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.LifeInsurance' doe
           <Property Name="HealthCondition" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="PensionStartYear" Type="date" Nullable="false" />
           <Property Name="InsuranceAmount" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.PensionPlans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PensionPlans">
           <Key>
-            <PropertyRef Name="Age" />
-            <PropertyRef Name="Occupation" />
-            <PropertyRef Name="MonthlyIncome" />
-            <PropertyRef Name="PensionStartYear" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="CustomerId" Type="int" />
           <Property Name="Age" Type="int" Nullable="false" />
@@ -115,6 +90,7 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.PensionPlans' does
           <Property Name="MonthlyIncome" Type="bigint" Nullable="false" />
           <Property Name="PensionStartYear" Type="date" Nullable="false" />
           <Property Name="PensionAmount" Type="bigint" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Purchased">
           <Key>
@@ -133,16 +109,9 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.PensionPlans' does
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="RoleName" Type="varchar" MaxLength="40" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TravelInsurance">
           <Key>
-            <PropertyRef Name="Age" />
-            <PropertyRef Name="SourceCountry" />
-            <PropertyRef Name="DestinationCountry" />
-            <PropertyRef Name="StartDate" />
-            <PropertyRef Name="EndDate" />
-            <PropertyRef Name="InsuranceAmount" />
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="CustomerId" Type="int" />
           <Property Name="Age" Type="int" Nullable="false" />
@@ -152,6 +121,7 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="HealthCondition" Type="varchar" MaxLength="60" />
           <Property Name="InsuranceAmount" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -299,76 +269,17 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="InsuranceManagementSystemDbModelStoreContainer">
+          <EntitySet Name="AutomobileInsurance" EntityType="Self.AutomobileInsurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealthInsurance" EntityType="Self.HealthInsurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeInsurance" EntityType="Self.HomeInsurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Insurances" EntityType="Self.Insurances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LifeInsurance" EntityType="Self.LifeInsurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PensionPlans" EntityType="Self.PensionPlans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Purchased" EntityType="Self.Purchased" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TravelInsurance" EntityType="Self.TravelInsurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AutomobileInsurance" EntityType="Self.AutomobileInsurance" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [AutomobileInsurance].[CustomerId] AS [CustomerId], 
-    [AutomobileInsurance].[VehicleType] AS [VehicleType], 
-    [AutomobileInsurance].[VehicleModel] AS [VehicleModel], 
-    [AutomobileInsurance].[VehicleNumber] AS [VehicleNumber], 
-    [AutomobileInsurance].[VehicleAge] AS [VehicleAge], 
-    [AutomobileInsurance].[PlanDuration] AS [PlanDuration]
-    FROM [dbo].[AutomobileInsurance] AS [AutomobileInsurance]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="HealthInsurance" EntityType="Self.HealthInsurance" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [HealthInsurance].[CustomerId] AS [CustomerId], 
-    [HealthInsurance].[Age] AS [Age], 
-    [HealthInsurance].[Gender] AS [Gender], 
-    [HealthInsurance].[HealthCondition] AS [HealthCondition], 
-    [HealthInsurance].[PlanDuration] AS [PlanDuration], 
-    [HealthInsurance].[InsuranceAmount] AS [InsuranceAmount]
-    FROM [dbo].[HealthInsurance] AS [HealthInsurance]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="HomeInsurance" EntityType="Self.HomeInsurance" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [HomeInsurance].[CustomerId] AS [CustomerId], 
-    [HomeInsurance].[BuildingType] AS [BuildingType], 
-    [HomeInsurance].[FloorArea] AS [FloorArea], 
-    [HomeInsurance].[City] AS [City], 
-    [HomeInsurance].[HouseNumber] AS [HouseNumber], 
-    [HomeInsurance].[Valuation] AS [Valuation], 
-    [HomeInsurance].[PlanDuration] AS [PlanDuration]
-    FROM [dbo].[HomeInsurance] AS [HomeInsurance]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="LifeInsurance" EntityType="Self.LifeInsurance" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [LifeInsurance].[CustomerId] AS [CustomerId], 
-    [LifeInsurance].[Age] AS [Age], 
-    [LifeInsurance].[Gender] AS [Gender], 
-    [LifeInsurance].[Occupation] AS [Occupation], 
-    [LifeInsurance].[Plan_Duration] AS [Plan_Duration], 
-    [LifeInsurance].[HealthCondition] AS [HealthCondition], 
-    [LifeInsurance].[PensionStartYear] AS [PensionStartYear], 
-    [LifeInsurance].[InsuranceAmount] AS [InsuranceAmount]
-    FROM [dbo].[LifeInsurance] AS [LifeInsurance]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="PensionPlans" EntityType="Self.PensionPlans" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [PensionPlans].[CustomerId] AS [CustomerId], 
-    [PensionPlans].[Age] AS [Age], 
-    [PensionPlans].[Occupation] AS [Occupation], 
-    [PensionPlans].[MonthlyIncome] AS [MonthlyIncome], 
-    [PensionPlans].[PensionStartYear] AS [PensionStartYear], 
-    [PensionPlans].[PensionAmount] AS [PensionAmount]
-    FROM [dbo].[PensionPlans] AS [PensionPlans]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="TravelInsurance" EntityType="Self.TravelInsurance" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [TravelInsurance].[CustomerId] AS [CustomerId], 
-    [TravelInsurance].[Age] AS [Age], 
-    [TravelInsurance].[SourceCountry] AS [SourceCountry], 
-    [TravelInsurance].[DestinationCountry] AS [DestinationCountry], 
-    [TravelInsurance].[StartDate] AS [StartDate], 
-    [TravelInsurance].[EndDate] AS [EndDate], 
-    [TravelInsurance].[HealthCondition] AS [HealthCondition], 
-    [TravelInsurance].[InsuranceAmount] AS [InsuranceAmount]
-    FROM [dbo].[TravelInsurance] AS [TravelInsurance]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__Automobil__Custo__33D4B598" Association="Self.FK__Automobil__Custo__33D4B598">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="AutomobileInsurance" EntitySet="AutomobileInsurance" />
@@ -419,6 +330,19 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InsuranceManagementSystemDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AutomobileInsurance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="VehicleType" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VehicleModel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VehicleAge" Type="Int32" Nullable="false" />
+          <Property Name="PlanDuration" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Automobil__Custo__33D4B598" FromRole="AutomobileInsurance" ToRole="Customers" />
+        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerId" />
@@ -437,6 +361,33 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
           <NavigationProperty Name="Purchaseds" Relationship="Self.FK__Purchased__Custo__300424B4" FromRole="Customers" ToRole="Purchased" />
           <NavigationProperty Name="TravelInsurances" Relationship="Self.FK__TravelIns__Custo__37A5467C" FromRole="Customers" ToRole="TravelInsurance" />
         </EntityType>
+        <EntityType Name="HealthInsurance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HealthCondition" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="PlanDuration" Type="Int32" Nullable="false" />
+          <Property Name="InsuranceAmount" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__HealthIns__Custo__31EC6D26" FromRole="HealthInsurance" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="HomeInsurance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="BuildingType" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FloorArea" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HouseNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valuation" Type="Int64" Nullable="false" />
+          <Property Name="PlanDuration" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__HomeInsur__Custo__35BCFE0A" FromRole="HomeInsurance" ToRole="Customers" />
+        </EntityType>
         <EntityType Name="Insurance">
           <Key>
             <PropertyRef Name="InsuranceId" />
@@ -452,6 +403,34 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
           <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK__Insurance__UserI__29572725" FromRole="Insurances" ToRole="Users" />
           <NavigationProperty Name="Purchaseds" Relationship="Self.FK__Purchased__Insur__2F10007B" FromRole="Insurances" ToRole="Purchased" />
+        </EntityType>
+        <EntityType Name="LifeInsurance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Occupation" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Plan_Duration" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HealthCondition" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PensionStartYear" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InsuranceAmount" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__LifeInsur__Custo__3B75D760" FromRole="LifeInsurance" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="PensionPlan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Occupation" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MonthlyIncome" Type="Int64" Nullable="false" />
+          <Property Name="PensionStartYear" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PensionAmount" Type="Int64" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__PensionPl__Custo__398D8EEE" FromRole="PensionPlans" ToRole="Customers" />
         </EntityType>
         <EntityType Name="Purchased">
           <Key>
@@ -473,6 +452,21 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
           <Property Name="RoleName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleId__267ABA7A" FromRole="Roles" ToRole="Users" />
         </EntityType>
+        <EntityType Name="TravelInsurance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="SourceCountry" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DestinationCountry" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HealthCondition" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="InsuranceAmount" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__TravelIns__Custo__37A5467C" FromRole="TravelInsurance" ToRole="Customers" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -488,107 +482,6 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
           <NavigationProperty Name="Customers" Relationship="Self.FK__Customers__UserI__2C3393D0" FromRole="Users" ToRole="Customers" />
           <NavigationProperty Name="Insurances" Relationship="Self.FK__Insurance__UserI__29572725" FromRole="Users" ToRole="Insurances" />
           <NavigationProperty Name="Role" Relationship="Self.FK__Users__RoleId__267ABA7A" FromRole="Users" ToRole="Roles" />
-        </EntityType>
-        <EntityType Name="AutomobileInsurance">
-          <Key>
-            <PropertyRef Name="VehicleType" />
-            <PropertyRef Name="VehicleNumber" />
-            <PropertyRef Name="VehicleAge" />
-            <PropertyRef Name="PlanDuration" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" />
-          <Property Name="VehicleType" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="VehicleModel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="VehicleNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="VehicleAge" Type="Int32" Nullable="false" />
-          <Property Name="PlanDuration" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__Automobil__Custo__33D4B598" FromRole="AutomobileInsurance" ToRole="Customers" />
-        </EntityType>
-        <EntityType Name="HealthInsurance">
-          <Key>
-            <PropertyRef Name="Age" />
-            <PropertyRef Name="Gender" />
-            <PropertyRef Name="PlanDuration" />
-            <PropertyRef Name="InsuranceAmount" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HealthCondition" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="PlanDuration" Type="Int32" Nullable="false" />
-          <Property Name="InsuranceAmount" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__HealthIns__Custo__31EC6D26" FromRole="HealthInsurance" ToRole="Customers" />
-        </EntityType>
-        <EntityType Name="HomeInsurance">
-          <Key>
-            <PropertyRef Name="BuildingType" />
-            <PropertyRef Name="City" />
-            <PropertyRef Name="HouseNumber" />
-            <PropertyRef Name="Valuation" />
-            <PropertyRef Name="PlanDuration" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" />
-          <Property Name="BuildingType" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FloorArea" Type="Int32" />
-          <Property Name="City" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HouseNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Valuation" Type="Int64" Nullable="false" />
-          <Property Name="PlanDuration" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__HomeInsur__Custo__35BCFE0A" FromRole="HomeInsurance" ToRole="Customers" />
-        </EntityType>
-        <EntityType Name="LifeInsurance">
-          <Key>
-            <PropertyRef Name="Age" />
-            <PropertyRef Name="Gender" />
-            <PropertyRef Name="Occupation" />
-            <PropertyRef Name="Plan_Duration" />
-            <PropertyRef Name="HealthCondition" />
-            <PropertyRef Name="PensionStartYear" />
-            <PropertyRef Name="InsuranceAmount" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Occupation" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Plan_Duration" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HealthCondition" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PensionStartYear" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="InsuranceAmount" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__LifeInsur__Custo__3B75D760" FromRole="LifeInsurance" ToRole="Customers" />
-        </EntityType>
-        <EntityType Name="PensionPlan">
-          <Key>
-            <PropertyRef Name="Age" />
-            <PropertyRef Name="Occupation" />
-            <PropertyRef Name="MonthlyIncome" />
-            <PropertyRef Name="PensionStartYear" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Occupation" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MonthlyIncome" Type="Int64" Nullable="false" />
-          <Property Name="PensionStartYear" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PensionAmount" Type="Int64" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__PensionPl__Custo__398D8EEE" FromRole="PensionPlans" ToRole="Customers" />
-        </EntityType>
-        <EntityType Name="TravelInsurance">
-          <Key>
-            <PropertyRef Name="Age" />
-            <PropertyRef Name="SourceCountry" />
-            <PropertyRef Name="DestinationCountry" />
-            <PropertyRef Name="StartDate" />
-            <PropertyRef Name="EndDate" />
-            <PropertyRef Name="InsuranceAmount" />
-          </Key>
-          <Property Name="CustomerId" Type="Int32" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="SourceCountry" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DestinationCountry" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="HealthCondition" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="InsuranceAmount" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__TravelIns__Custo__37A5467C" FromRole="TravelInsurance" ToRole="Customers" />
         </EntityType>
         <Association Name="FK__Automobil__Custo__33D4B598">
           <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
@@ -722,18 +615,18 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="InsuranceManagementSystemDbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="Insurances" EntityType="Self.Insurance" />
-          <EntitySet Name="Purchaseds" EntityType="Self.Purchased" />
-          <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+        <EntityContainer Name="InsuranceManagementSystemDbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AutomobileInsurances" EntityType="Self.AutomobileInsurance" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="HealthInsurances" EntityType="Self.HealthInsurance" />
           <EntitySet Name="HomeInsurances" EntityType="Self.HomeInsurance" />
+          <EntitySet Name="Insurances" EntityType="Self.Insurance" />
           <EntitySet Name="LifeInsurances" EntityType="Self.LifeInsurance" />
           <EntitySet Name="PensionPlans" EntityType="Self.PensionPlan" />
+          <EntitySet Name="Purchaseds" EntityType="Self.Purchased" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="TravelInsurances" EntityType="Self.TravelInsurance" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK__Automobil__Custo__33D4B598" Association="Self.FK__Automobil__Custo__33D4B598">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="AutomobileInsurance" EntitySet="AutomobileInsurances" />
@@ -784,7 +677,20 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="InsuranceManagementSystemDbModelStoreContainer" CdmEntityContainer="InsuranceManagementSystemDbEntities">
+        <EntityContainerMapping StorageEntityContainer="InsuranceManagementSystemDbModelStoreContainer" CdmEntityContainer="InsuranceManagementSystemDbEntities1">
+          <EntitySetMapping Name="AutomobileInsurances">
+            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.AutomobileInsurance">
+              <MappingFragment StoreEntitySet="AutomobileInsurance">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+                <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+                <ScalarProperty Name="VehicleAge" ColumnName="VehicleAge" />
+                <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
@@ -793,6 +699,33 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthInsurances">
+            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.HealthInsurance">
+              <MappingFragment StoreEntitySet="HealthInsurance">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
+                <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
+                <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeInsurances">
+            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.HomeInsurance">
+              <MappingFragment StoreEntitySet="HomeInsurance">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="BuildingType" ColumnName="BuildingType" />
+                <ScalarProperty Name="FloorArea" ColumnName="FloorArea" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="Valuation" ColumnName="Valuation" />
+                <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -808,6 +741,34 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
                 <ScalarProperty Name="InsuranceProvider" ColumnName="InsuranceProvider" />
                 <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LifeInsurances">
+            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.LifeInsurance">
+              <MappingFragment StoreEntitySet="LifeInsurance">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="Plan_Duration" ColumnName="Plan_Duration" />
+                <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
+                <ScalarProperty Name="PensionStartYear" ColumnName="PensionStartYear" />
+                <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PensionPlans">
+            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.PensionPlan">
+              <MappingFragment StoreEntitySet="PensionPlans">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="MonthlyIncome" ColumnName="MonthlyIncome" />
+                <ScalarProperty Name="PensionStartYear" ColumnName="PensionStartYear" />
+                <ScalarProperty Name="PensionAmount" ColumnName="PensionAmount" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -830,83 +791,6 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AutomobileInsurances">
-            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.AutomobileInsurance">
-              <MappingFragment StoreEntitySet="AutomobileInsurance">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
-                <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
-                <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
-                <ScalarProperty Name="VehicleAge" ColumnName="VehicleAge" />
-                <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HealthInsurances">
-            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.HealthInsurance">
-              <MappingFragment StoreEntitySet="HealthInsurance">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
-                <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
-                <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="HomeInsurances">
-            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.HomeInsurance">
-              <MappingFragment StoreEntitySet="HomeInsurance">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="BuildingType" ColumnName="BuildingType" />
-                <ScalarProperty Name="FloorArea" ColumnName="FloorArea" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-                <ScalarProperty Name="Valuation" ColumnName="Valuation" />
-                <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LifeInsurances">
-            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.LifeInsurance">
-              <MappingFragment StoreEntitySet="LifeInsurance">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
-                <ScalarProperty Name="Plan_Duration" ColumnName="Plan_Duration" />
-                <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
-                <ScalarProperty Name="PensionStartYear" ColumnName="PensionStartYear" />
-                <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PensionPlans">
-            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.PensionPlan">
-              <MappingFragment StoreEntitySet="PensionPlans">
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
-                <ScalarProperty Name="MonthlyIncome" ColumnName="MonthlyIncome" />
-                <ScalarProperty Name="PensionStartYear" ColumnName="PensionStartYear" />
-                <ScalarProperty Name="PensionAmount" ColumnName="PensionAmount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TravelInsurances">
             <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.TravelInsurance">
               <MappingFragment StoreEntitySet="TravelInsurance">
@@ -918,6 +802,21 @@ warning 6002: The table/view 'InsuranceManagementSystemDb.dbo.TravelInsurance' d
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
                 <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

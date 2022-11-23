@@ -1,6 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="InsuranceManagementSystemDbModelStoreContainer" CdmEntityContainer="InsuranceManagementSystemDbEntities">
+  <EntityContainerMapping StorageEntityContainer="InsuranceManagementSystemDbModelStoreContainer" CdmEntityContainer="InsuranceManagementSystemDbEntities1">
+    <EntitySetMapping Name="AutomobileInsurances">
+      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.AutomobileInsurance">
+        <MappingFragment StoreEntitySet="AutomobileInsurance">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+          <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+          <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+          <ScalarProperty Name="VehicleAge" ColumnName="VehicleAge" />
+          <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.Customer">
         <MappingFragment StoreEntitySet="Customers">
@@ -9,6 +22,33 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HealthInsurances">
+      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.HealthInsurance">
+        <MappingFragment StoreEntitySet="HealthInsurance">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
+          <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
+          <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HomeInsurances">
+      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.HomeInsurance">
+        <MappingFragment StoreEntitySet="HomeInsurance">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="BuildingType" ColumnName="BuildingType" />
+          <ScalarProperty Name="FloorArea" ColumnName="FloorArea" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+          <ScalarProperty Name="Valuation" ColumnName="Valuation" />
+          <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -24,6 +64,34 @@
           <ScalarProperty Name="InsuranceProvider" ColumnName="InsuranceProvider" />
           <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LifeInsurances">
+      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.LifeInsurance">
+        <MappingFragment StoreEntitySet="LifeInsurance">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+          <ScalarProperty Name="Plan_Duration" ColumnName="Plan_Duration" />
+          <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
+          <ScalarProperty Name="PensionStartYear" ColumnName="PensionStartYear" />
+          <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PensionPlans">
+      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.PensionPlan">
+        <MappingFragment StoreEntitySet="PensionPlans">
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+          <ScalarProperty Name="MonthlyIncome" ColumnName="MonthlyIncome" />
+          <ScalarProperty Name="PensionStartYear" ColumnName="PensionStartYear" />
+          <ScalarProperty Name="PensionAmount" ColumnName="PensionAmount" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -46,83 +114,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.User">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AutomobileInsurances">
-      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.AutomobileInsurance">
-        <MappingFragment StoreEntitySet="AutomobileInsurance">
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
-          <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
-          <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
-          <ScalarProperty Name="VehicleAge" ColumnName="VehicleAge" />
-          <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HealthInsurances">
-      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.HealthInsurance">
-        <MappingFragment StoreEntitySet="HealthInsurance">
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="Age" ColumnName="Age" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
-          <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
-          <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HomeInsurances">
-      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.HomeInsurance">
-        <MappingFragment StoreEntitySet="HomeInsurance">
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="BuildingType" ColumnName="BuildingType" />
-          <ScalarProperty Name="FloorArea" ColumnName="FloorArea" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-          <ScalarProperty Name="Valuation" ColumnName="Valuation" />
-          <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="LifeInsurances">
-      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.LifeInsurance">
-        <MappingFragment StoreEntitySet="LifeInsurance">
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="Age" ColumnName="Age" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Occupation" ColumnName="Occupation" />
-          <ScalarProperty Name="Plan_Duration" ColumnName="Plan_Duration" />
-          <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
-          <ScalarProperty Name="PensionStartYear" ColumnName="PensionStartYear" />
-          <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PensionPlans">
-      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.PensionPlan">
-        <MappingFragment StoreEntitySet="PensionPlans">
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="Age" ColumnName="Age" />
-          <ScalarProperty Name="Occupation" ColumnName="Occupation" />
-          <ScalarProperty Name="MonthlyIncome" ColumnName="MonthlyIncome" />
-          <ScalarProperty Name="PensionStartYear" ColumnName="PensionStartYear" />
-          <ScalarProperty Name="PensionAmount" ColumnName="PensionAmount" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TravelInsurances">
       <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.TravelInsurance">
         <MappingFragment StoreEntitySet="TravelInsurance">
@@ -134,6 +125,21 @@
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           <ScalarProperty Name="HealthCondition" ColumnName="HealthCondition" />
           <ScalarProperty Name="InsuranceAmount" ColumnName="InsuranceAmount" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="InsuranceManagementSystemDbModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

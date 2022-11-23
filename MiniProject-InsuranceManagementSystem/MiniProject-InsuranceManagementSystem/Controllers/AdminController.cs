@@ -13,16 +13,17 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             return View();
         }
 
-
-
        public ActionResult AdminProfilePage()
           {
-            if (Session.Count < 1)
+
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
-                return RedirectToAction("AccessDenied", "SuccessFailure");
+                return View();
+
             }
 
-            return View();
+            return RedirectToAction("AccessDenied", "SuccessFailure");
+
 
           }
     }

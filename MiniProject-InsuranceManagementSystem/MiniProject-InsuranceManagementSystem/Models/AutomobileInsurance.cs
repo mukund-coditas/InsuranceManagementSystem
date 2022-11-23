@@ -20,6 +20,7 @@ namespace MiniProject_InsuranceManagementSystem.Models
         public string VehicleNumber { get; set; }
         public int VehicleAge { get; set; }
         public int PlanDuration { get; set; }
+        public int id { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

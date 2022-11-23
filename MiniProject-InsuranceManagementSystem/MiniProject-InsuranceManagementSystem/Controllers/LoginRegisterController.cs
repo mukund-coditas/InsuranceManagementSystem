@@ -10,11 +10,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
     
         public class LoginRegisterController : Controller
         {
-            InsuranceManagementSystemDbEntities entities;
+            InsuranceManagementSystemDbEntities1 entities;
 
             public LoginRegisterController()
             {
-                entities = new InsuranceManagementSystemDbEntities();
+                entities = new InsuranceManagementSystemDbEntities1();
 
             }
 
@@ -38,13 +38,17 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             }
 
 
-            public ActionResult Registration()
-            {
+        public ActionResult Registration()
+        {
 
+            if (Session["RoleId"] != null)
+            {
                 User user = new User();
 
                 return View(user);
             }
+            return RedirectToAction("RolesFilterMethod");
+        }
 
 
 
@@ -88,6 +92,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                          Session["CurrentUserId"]= info.UserId;
                          Session["FirstName"] = info.FirstName;
                          Session["LastName"] = info.LastName;
+                         Session["IsAuthenticated"] = true;
                         return RedirectToAction(ActionName, ControllerName);
 
                     }

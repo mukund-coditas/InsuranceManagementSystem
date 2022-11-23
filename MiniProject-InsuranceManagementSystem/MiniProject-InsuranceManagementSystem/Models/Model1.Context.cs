@@ -13,10 +13,10 @@ namespace MiniProject_InsuranceManagementSystem.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class InsuranceManagementSystemDbEntities : DbContext
+    public partial class InsuranceManagementSystemDbEntities1 : DbContext
     {
-        public InsuranceManagementSystemDbEntities()
-            : base("name=InsuranceManagementSystemDbEntities")
+        public InsuranceManagementSystemDbEntities1()
+            : base("name=InsuranceManagementSystemDbEntities1")
         {
         }
     
@@ -25,16 +25,16 @@ namespace MiniProject_InsuranceManagementSystem.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<Insurance> Insurances { get; set; }
-        public virtual DbSet<Purchased> Purchaseds { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AutomobileInsurance> AutomobileInsurances { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<HealthInsurance> HealthInsurances { get; set; }
         public virtual DbSet<HomeInsurance> HomeInsurances { get; set; }
+        public virtual DbSet<Insurance> Insurances { get; set; }
         public virtual DbSet<LifeInsurance> LifeInsurances { get; set; }
         public virtual DbSet<PensionPlan> PensionPlans { get; set; }
+        public virtual DbSet<Purchased> Purchaseds { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<TravelInsurance> TravelInsurances { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

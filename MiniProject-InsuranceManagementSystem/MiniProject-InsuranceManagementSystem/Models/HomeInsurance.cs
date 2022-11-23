@@ -21,6 +21,7 @@ namespace MiniProject_InsuranceManagementSystem.Models
         public string HouseNumber { get; set; }
         public long Valuation { get; set; }
         public int PlanDuration { get; set; }
+        public int id { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

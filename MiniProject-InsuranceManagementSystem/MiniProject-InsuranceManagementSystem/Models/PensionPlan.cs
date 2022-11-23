@@ -20,6 +20,7 @@ namespace MiniProject_InsuranceManagementSystem.Models
         public long MonthlyIncome { get; set; }
         public System.DateTime PensionStartYear { get; set; }
         public Nullable<long> PensionAmount { get; set; }
+        public int id { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

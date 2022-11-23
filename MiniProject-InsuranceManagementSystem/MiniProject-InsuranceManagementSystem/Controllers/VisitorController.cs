@@ -11,11 +11,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
     {
         // GET: Visitor
 
-        InsuranceManagementSystemDbEntities entities;
+        InsuranceManagementSystemDbEntities1 entities;
 
         public VisitorController()
         {
-            entities = new InsuranceManagementSystemDbEntities();
+            entities = new InsuranceManagementSystemDbEntities1();
 
         }
 

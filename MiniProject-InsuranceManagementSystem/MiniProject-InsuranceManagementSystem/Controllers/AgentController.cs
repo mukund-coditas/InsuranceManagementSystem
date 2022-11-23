@@ -9,12 +9,12 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 {
     public class AgentController : Controller
     {
-
-        InsuranceManagementSystemDbEntities entities;
+        
+        InsuranceManagementSystemDbEntities1 entities;
 
         public AgentController()
         {
-            entities = new InsuranceManagementSystemDbEntities();
+            entities = new InsuranceManagementSystemDbEntities1();
 
         }
 
@@ -25,23 +25,25 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult AgentProfilePage()
         {
-            if (Session.Count < 1)
+
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
-                return RedirectToAction("AccessDenied", "SuccessFailure");
+                return RedirectToAction("AddInsurance");
+
             }
 
-            return RedirectToAction("AddInsurance");
+            return RedirectToAction("AccessDenied", "SuccessFailure");
         }
 
         public ActionResult AddInsurance()
-        {  
-            if (Session.Count < 1)
+        {
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
-                return RedirectToAction("AccessDenied","SuccessFailure");
+                Insurance insurance = new Insurance();
+                return View(insurance);
             }
-
-            Insurance insurance = new Insurance();
-            return View(insurance);
+            return RedirectToAction("AccessDenied", "SuccessFailure");
+            
    
         }
 

@@ -11,8 +11,7 @@ namespace MiniProject_InsuranceManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,19 +22,9 @@ namespace MiniProject_InsuranceManagementSystem.Models
         }
     
         public int UserId { get; set; }
-        [Required(ErrorMessage ="this field is manadatory")]
         public string Username { get; set; }
-
-        [Required(ErrorMessage = "this field is manadatory")]
-
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "this field is manadatory")]
-
         public string FirstName { get; set; }
-
-        [Required(ErrorMessage = "this field is manadatory")]
-
         public string LastName { get; set; }
         public System.DateTime RegistrationDate { get; set; }
         public string CompanyName { get; set; }

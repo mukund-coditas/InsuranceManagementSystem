@@ -5,9 +5,12 @@
 
 <h2 style="color:royalblue;font:bold;  border-bottom:0.1rem inset royalblue;">User Profile : </h2>
 <div>
-    <h3>Name : @ViewBag.FirstName @ViewBag.LastName</h3>   
+    <h3>Name : @ViewBag.FirstName @ViewBag.LastName</h3>
 </div>
 
+<div>
+    @Html.ActionLink("Buy Insurance", "FillCustomerDetails")
+</div>
 
 <div>
     @Html.ActionLink("Logout", "LogoutUser", "LoginRegister")

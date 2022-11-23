@@ -22,6 +22,7 @@ namespace MiniProject_InsuranceManagementSystem.Models
         public System.DateTime EndDate { get; set; }
         public string HealthCondition { get; set; }
         public long InsuranceAmount { get; set; }
+        public int id { get; set; }
     
         public virtual Customer Customer { get; set; }
     }
