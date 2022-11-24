@@ -40,8 +40,12 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
        
          public ActionResult FillCustomerDetails()
         {
-            var customer = new Customer();
-            return View(customer);
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+            {
+                var customer = new Customer();
+                return View(customer);
+            }
+            return RedirectToAction("UserProfilePage");
         }
 
         [HttpPost]
@@ -67,27 +71,62 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             return View();
         }
 
+
         public ActionResult PurchaseNewInsurance()
         {
-            return View();
+            var insurances = Session["SuggestedInsurances"];
+            return View(insurances);
+        }
+
+        [HttpPost]
+         public ActionResult ConfirmationOfInsurancePurchase(string InsuranceId)
+        {
+            var PuchasedDetails = new Purchased();
+            var customer = (Customer)Session["Customer"];
+
+            PuchasedDetails.DateOfPurchase = DateTime.Now;
+            PuchasedDetails.ApprovalStatus = "Not Approved";
+            PuchasedDetails.InsuranceId = Convert.ToInt32(InsuranceId);
+
+            customer.Purchaseds.Add(PuchasedDetails);
+            entities.Customers.Add(customer);
+            entities.SaveChanges();
+
+            return RedirectToAction("UserProfilePage");
         }
 
         public ActionResult HomeInsurance()
         {
-            HomeInsurance homeInsurance = new HomeInsurance();
+            if (Session["Customer"] != null)
+           {
+                HomeInsurance homeInsurance = new HomeInsurance();
 
-            return View(homeInsurance);
+                return View(homeInsurance);
+           }
+            return RedirectToAction("FillCustomerDetails");
         }
 
         [HttpPost]
         public ActionResult HomeInsurance(HomeInsurance homeInsurance)
         {
-            var customer = (Customer)Session["Customer"];
-            homeInsurance.BuildingType = Request.Form["building-type"].ToString();
-            customer.HomeInsurances.Add(homeInsurance);
-            entities.Customers.Add(customer);
-            entities.SaveChanges();
+
+            if (ModelState.IsValid)
+            {
+                var customer = (Customer)Session["Customer"];
+                homeInsurance.BuildingType = Request.Form["building-type"].ToString();
+                customer.HomeInsurances.Add(homeInsurance);
+
+                var insurances = (from items in entities.Insurances
+                                  where items.InsuranceType == "Home Insurance" &&
+                                  items.SubType == homeInsurance.BuildingType
+                                  select items).ToList();
+
+                Session["Customer"] = customer;
+                Session["SuggestedInsurances"] = insurances;
+                return RedirectToAction("PurchaseNewInsurance");
+            }
             return View();
+
         }
 
         public ActionResult HealthInsurance()

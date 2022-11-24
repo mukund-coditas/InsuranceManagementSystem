@@ -255,6 +255,7 @@
     <Content Include="Views\SuccessFailure\AccessDenied.cshtml" />
     <Content Include="Views\User\HomeInsurance.cshtml" />
     <Content Include="Views\User\FillCustomerDetails.cshtml" />
+    <Content Include="Views\User\PurchaseNewInsurance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
