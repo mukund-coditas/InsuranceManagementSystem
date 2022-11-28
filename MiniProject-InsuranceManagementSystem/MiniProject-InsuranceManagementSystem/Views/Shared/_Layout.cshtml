@@ -18,17 +18,19 @@
 
     <div class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <div class="container">
+            <img src="~/images/insurance.png" width="32" class="navbar-btn" style="margin-right:1rem">
             <div class="navbar-header">
+
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
                 </button>
                 @Html.ActionLink("Insurance Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="font-weight:600; background-color:aliceblue; border-radius:0.8rem;">
-                    <li>@Html.ActionLink("Login", "LoginUser", "LoginRegister", new { area = "" },new {@style = "font-size:16px; color:black;" })</li>
-                    <li>@Html.ActionLink("ShowUsers", "Index", "LoginRegister", new { area = "" }, new {@style = "font-size:16px; color:black;" })</li>
-                    <li>@Html.ActionLink("Register", "RolesFilterMethod", "LoginRegister", new { area = "" }, new {@style = "font-size:16px; color:black;" })</li>
-                    <li>@Html.ActionLink("View Insurances", "Index", "Visitor", new { area = "" }, new {@style = "font-size:16px; color:black;" })</li>
+                    <li>@Html.ActionLink("Login", "LoginUser", "LoginRegister", new { area = "" }, new { @style = "font-size:16px; color:black;" })</li>
+                    @*<li>@Html.ActionLink("ShowUsers", "Index", "LoginRegister", new { area = "" }, new {@style = "font-size:16px; color:black;" })</li>*@
+                    <li>@Html.ActionLink("Register", "RolesFilterMethod", "LoginRegister", new { area = "" }, new { @style = "font-size:16px; color:black;" })</li>
+                    <li>@Html.ActionLink("View Insurances", "Index", "Visitor", new { area = "" }, new { @style = "font-size:16px; color:black;" })</li>
 
                 </ul>
             </div>
@@ -38,7 +40,7 @@
 
     <div class="container body-content">
         @RenderBody()
-        <footer>
+        <footer style="margin-top:10rem;">
             <p>&copy; @DateTime.Now.Year - All Rights Reserved</p>
         </footer>
     </div>

@@ -4,61 +4,85 @@
     ViewBag.Title = "FillCustomerDetails";
 }
 
-<h2>Fill the customer details : </h2>
+<style>
+    #insurances {
+        background-color: royalblue;
+        padding: 1rem;
+        border-radius: 0.2rem;
+        color: white;
+        margin: 0;
+    }
+
+    body {
+        background-color: antiquewhite;
+    }
+
+    option {
+        background-color: white;
+        color: black;
+    }
+</style>
+
+<button class="btn btn-primary" style="margin-top:2rem;margin-bottom:1rem;margin-left:1rem;">
+    @Html.ActionLink("《 Back to Profile", "UserProfilePage", new { area = "" }, new { @style = "font-size:14px; color:white;" })
+</button>
+<h1 style="text-align:center;font-weight:bold;margin-bottom:3rem; margin-top:0">Fill the customer's details</h1>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-<div class="form-horizontal" style="margin: auto 28rem;">
+    <div class="card align-items-center" style="border-radius: 1rem; box-shadow: 0px 7px 35px -4px black; margin:1rem 8rem;padding:2rem 0;">
 
-    <div class="col-12" style="margin:2rem 0">
-        <label for="insurances" class="form-label">Choose insurance : </label>
-        <select name="insurances" id="insurances" class="custom-list-items">
-            <option value="LifeInsurance">Life Insurance</option>
-            <option value="PensionPlans">Pension Plans</option>
-            <option value="HealthInsurance">Health Insurance</option>
-            <option value="HomeInsurance">Home Insurance</option>
-            <option value="AutomobileInsurance">Automobile Insurance</option>
-            <option value="TravelInsurance">Travel Insurance</option>
-        </select>
+        <div class="form-horizontal" style="margin: auto 10rem;">
+
+            <div class="col-12" style="margin:2rem 0">
+                <label for="insurances" class="form-label">Choose insurance : </label>
+                <select name="insurances" id="insurances">
+                    <option value="LifeInsurance">Life Insurance</option>
+                    <option value="PensionPlans">Pension Plans</option>
+                    <option value="HealthInsurance">Health Insurance</option>
+                    <option value="HomeInsurance">Home Insurance</option>
+                    <option value="AutomobileInsurance">Automobile Insurance</option>
+                    <option value="TravelInsurance">Travel Insurance</option>
+                </select>
+            </div>
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your FirstName", @style = "height:4rem;" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your LastName", @style = "height:4rem;" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter mobile number", @style = "height:4rem;" } })
+                        @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Proceed" class="btn btn-success btn-lg  btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your FirstName" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your LastName" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+}
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MobileNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control" ,placeholder = "Enter mobile number" } })
-                @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Done" class="btn btn-primary" />
-            </div>
-        </div>
-    </div>
-</div>
-        }
-
-        <div>
-            @Html.ActionLink("Back to Profile", "UserProfilePage")
-        </div>

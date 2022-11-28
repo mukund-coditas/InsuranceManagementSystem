@@ -18,10 +18,12 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             entities = new InsuranceManagementSystemDbEntities1();
 
         }
+
         public ActionResult Index()
         {
             return View();
         }
+
 
         public ActionResult UserProfilePage()
         {
@@ -29,11 +31,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             {
                 ViewBag.FirstName = Session["FirstName"];
                 ViewBag.LastName = Session["LastName"];
+                ViewBag.Username = Session["Username"];
                 return View();
             }
 
             return RedirectToAction("AccessDenied", "SuccessFailure");
-
 
         }
 
@@ -154,5 +156,39 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             return View();
         }
 
+        public ActionResult YourInsurances()
+        {
+
+            var CustomerStatus = new List<CustomerStatus>();
+
+            int currentUserID = Convert.ToInt32(Session["CurrentUserId"]);
+
+            var listOfCustomers = ( from cts in entities.Customers where
+                          cts.UserId == currentUserID select cts).ToList();
+
+
+            var result = (from customer in listOfCustomers
+                       join purchased in entities.Purchaseds
+                       on customer.CustomerId equals
+                       purchased.CustomerId
+                       join insurance in entities.Insurances
+                       on purchased.InsuranceId equals insurance.InsuranceId
+                       select new CustomerStatus()
+                       {
+                           FirstName=customer.FirstName,
+                           LastName=customer.LastName,
+                           MobileNumber=customer.MobileNumber.ToString(),
+                           ApprovalStatus=purchased.ApprovalStatus,
+                           InsuranceType=insurance.InsuranceType,
+                           SubType=insurance.SubType,
+                           PurchasedDate= (DateTime)purchased.DateOfPurchase
+
+                       }).ToList();
+
+
+            return View(result);
+
+
+        }
     }
 }

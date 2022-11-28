@@ -19,12 +19,38 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         }
 
+
         [HttpGet]
         public ActionResult Index()
         {
-            var insurances = entities.Insurances;
+            var insurances = entities.Insurances.OrderByDescending(x => x.ReleaseDate).ToList();
             return View(insurances);
         }
+
+        [HttpPost]
+        public  ActionResult Index(string userChoice)
+        {
+
+            var allInsurances = entities.Insurances.ToList();
+
+            string[] keywords = userChoice.ToLower().Split(' ');
+
+            foreach (string keyword in keywords)
+            {
+                
+                allInsurances =  allInsurances.Where(p => (p.SubType.ToLower().Contains(keyword))
+                                              || (p.InsuranceType.ToLower().Contains(keyword))
+                                              || (p.InsuranceProvider.ToLower().Contains(keyword))).ToList();
+            }
+            ViewBag.insuranceSearched = userChoice;
+            if (allInsurances.Count > 0)
+                return View(allInsurances);
+            else
+                return RedirectToAction("Index");
+
+
+        }
+
         public ActionResult VisitorDashboard()
         {
             return View();

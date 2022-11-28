@@ -18,13 +18,20 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
+                ViewBag.FirstName = Session["FirstName"];
+                ViewBag.LastName = Session["LastName"];
+                ViewBag.Username = Session["Username"];
                 return View();
-
             }
 
             return RedirectToAction("AccessDenied", "SuccessFailure");
 
 
           }
+
+        public ActionResult PendingRequests()
+        {
+            return View();
+        }
     }
 }

@@ -25,25 +25,25 @@ namespace MiniProject_InsuranceManagementSystem.Models
         public int UserId { get; set; }
 
 
-        [Required(ErrorMessage = "Username field is required")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "At least 5 characters")]
+        //[Required(ErrorMessage = "Username field is required")]
+        //[StringLength(50, MinimumLength = 5, ErrorMessage = "At least 5 characters")]
         public string Username { get; set; }
 
 
-        [Required(ErrorMessage = "Password field is required")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "At least 5 characters")]
+        //[Required(ErrorMessage = "Password field is required")]
+        //[StringLength(50, MinimumLength = 5, ErrorMessage = "At least 5 characters")]
         public string Password { get; set; }
 
 
 
-        [Required(ErrorMessage = "FirstName field is required")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "FirstName is not valid")]
+        //[Required(ErrorMessage = "FirstName field is required")]
+        //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "FirstName is not valid")]
         public string FirstName { get; set; }
 
 
 
-        [Required(ErrorMessage = "LastName field is required")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "LastName is not valid")]
+        //[Required(ErrorMessage = "LastName field is required")]
+        //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "LastName is not valid")]
         public string LastName { get; set; }
         
         public System.DateTime RegistrationDate { get; set; }

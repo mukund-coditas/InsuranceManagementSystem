@@ -4,61 +4,102 @@
     ViewBag.Title = "Index";
 }
 
-<h2>List of Insurances</h2>
+<style>
+   /* #search-button {
+        font-size: 1rem;
+        font-family: Arial;
+    
+        border-width: 0.2rem;
+        color: #ffffff;
+        border-color: #a511c0;
+        background-color: #a511c0;
+        border-radius: 0.5rem;
+        margin-left: 0.1rem;
+    }*/
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table-dark table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.InsuranceType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubType)
-        </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.YearlyPremium)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InsuranceProvider)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserId)
-        </th>
-        <th></th>
-    </tr>
+    #search-bar {
+        width: 40rem;
+        height: 3.5rem;
+        padding:2rem 2rem 2rem 1rem;
+        border-width: 0.1rem;
+        color: black;
+        font-size:medium;
+        border-color: green;
+        border-radius: 0.5rem;
+    }
 
-@foreach (var item in Model) {
-    <tr style="margin:1rem">
-        <td>
-            @Html.DisplayFor(modelItem => item.InsuranceType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YearlyPremium)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InsuranceProvider)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.InsuranceId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.InsuranceId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.InsuranceId })
-        </td>
-    </tr>
+    /*#search-button:hover {
+        background-color: #c430ff;
+    }*/
+</style>
+
+<hr>
+<h1 style="color:white; text-align:center; font-weight:bold;">List of Insurances</h1>
+<hr>
+
+@using (Html.BeginForm("Index", "Visitor"))
+{
+
+    <div style="text-align:center">
+        <input type="search"  id="search-bar" placeholder="Search Insurance...." name="userChoice" value="@ViewBag.insuranceSearched" />
+        <input type="submit" value="Search" class="btn btn-success" style="height:4rem" />
+   </div>
 }
+<table class="table table-striped" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
+    <thead style="background-color: #002d72; color:whitesmoke; font-size:medium">
+        <tr>
+            <th style="padding: 2rem">
+                @Html.DisplayNameFor(model => model.InsuranceType)
+            </th>
+            <th style="padding: 2rem">
+                @Html.DisplayNameFor(model => model.SubType)
+            </th>
+
+            <th style="padding:2rem 2rem 2rem 0">
+                @Html.DisplayNameFor(model => model.YearlyPremium)
+            </th>
+            <th style="padding: 2rem 2rem 2rem 0">
+                @Html.DisplayNameFor(model => model.InsuranceProvider)
+            </th>
+            <th style="padding: 2rem ">
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+
+            <tr style="margin:1rem;">
+                <td style="padding:2rem;font-weight:bold;font-size:medium">
+                    @Html.DisplayFor(modelItem => item.InsuranceType)
+                </td>
+                <td style="padding:2rem;">
+                    @Html.DisplayFor(modelItem => item.SubType)
+                </td>
+                <td style="padding:2rem;">
+                    @Html.DisplayFor(modelItem => item.YearlyPremium)
+                </td>
+                <td style="padding:2rem;">
+                    @Html.DisplayFor(modelItem => item.InsuranceProvider)
+                </td>
+                <td style="padding:2rem;">
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-rounded btn-block">
+
+                        @Html.ActionLink("Purchase »", "LoginUser", "LoginRegister", new { area = "" }, new { @style = "color:white;" })
+
+                    </button>
+                </td>
+
+            </tr>
+            
+        </tbody>
+    }
 
 </table>

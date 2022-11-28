@@ -4,64 +4,82 @@
     ViewBag.Title = "PurchaseNewInsurance";
 }
 
-<h2>Suggested Plans</h2>
+<style>
+    body {
+        background-color: #989690;
+    }
+</style>
 
-<table class="table table-dark table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.InsuranceType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YearlyPremium)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InsuranceProvider)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </th>
-        <th>
-            Buy it
-        </th>
-    </tr>
+<hr>
+<h1 style="color:white; text-align:center; font-weight:bold;">Suggested Plans</h1>
+<hr>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.InsuranceType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YearlyPremium)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InsuranceProvider)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReleaseDate)
-        </td>
-        <td>
-            @using (Html.BeginForm("ConfirmationOfInsurancePurchase", "User"))
-            {  
-                <button type="submit" name="InsuranceId" class="btn btn-primary btn-md btn-block" style="margin-top:1.4rem" value=@item.InsuranceId>Purchase</button>
+<table class="table table-striped" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
+    <thead style="background-color: #002d72; color:whitesmoke; font-size:medium">
+
+        <tr>
+
+            <th style="padding: 2rem">
+                @Html.DisplayNameFor(model => model.InsuranceType)
+            </th>
+            <th style="padding: 2rem">
+                @Html.DisplayNameFor(model => model.SubType)
+            </th>
+            <th style="padding: 2rem">
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th style="padding: 2rem">
+                @Html.DisplayNameFor(model => model.YearlyPremium)
+            </th>
+            <th style="padding: 2rem">
+                @Html.DisplayNameFor(model => model.InsuranceProvider)
+            </th>
+            <th style="padding: 2rem">
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </th>
+            <th style="padding: 2rem">
+                Buy it
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+
+            <tr style="margin:1rem;">
+                <td style="padding:2rem;font-weight:bold;font-size:medium">
+
+                    @Html.DisplayFor(modelItem => item.InsuranceType)
+                </td>
+                <td style="padding:2rem;">
+                    @Html.DisplayFor(modelItem => item.SubType)
+                </td>
+                <td style="padding:2rem;">
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td style="padding:2rem;">
+                    @Html.DisplayFor(modelItem => item.YearlyPremium)
+                </td>
+                <td style="padding:2rem;">
+                    @Html.DisplayFor(modelItem => item.InsuranceProvider)
+                </td>
+                <td style="padding:2rem;">
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @using (Html.BeginForm("ConfirmationOfInsurancePurchase", "User"))
+                    {
+
+                        <button type="submit" name="InsuranceId" class="btn btn-success btn-md btn-block" style="margin-top:1.4rem" value=@item.InsuranceId>Purchase &raquo;</button>
+                    }
+
+                </td>
+
+            </tr>
+        </tbody>
+
             }
 
-        </td>
-        
-    </tr >
-}
 
-
-</table>
+    </table>

@@ -19,12 +19,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             }
 
 
-            [HttpGet]
-            public ActionResult Index()
-            {
-                var result = (from data in entities.Users select data).ToList();
-                return View(result);
-            }
+          
             public ActionResult RolesFilterMethod()
             {
                 return View();
@@ -53,18 +48,28 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
 
             [HttpPost]
-            public ActionResult Registration(User user)
+            public ActionResult Registration(string username,string password, string firstname, string lastname,string company)
             {
 
-                if (ModelState.IsValid)
-                {
-                    user.RoleId = Convert.ToInt32(Session["RoleId"]);
-                    user.RegistrationDate = DateTime.Now;
-                    entities.Users.Add(user);
-                    entities.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+            try
+            {
+                User user = new User();
+                user.Username = username;
+                user.FirstName = firstname;
+                user.LastName = lastname;
+                user.Password = password;
+                user.CompanyName = company;
+
+                user.RoleId = Convert.ToInt32(Session["RoleId"]);
+                user.RegistrationDate = DateTime.Now;
+                entities.Users.Add(user);
+                entities.SaveChanges();
+                return RedirectToAction("LoginUser");
+            }
+            catch
+            {
                 return View();
+            }
             }
 
             public ActionResult LoginUser()
@@ -78,9 +83,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 try
                 {
-                    if (ModelState.IsValid)
-                    {
-
+                   
                         var info = (from u in entities.Users
                                     where u.Username == username
                                     && u.Password == password
@@ -92,13 +95,12 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                          Session["CurrentUserId"]= info.UserId;
                          Session["FirstName"] = info.FirstName;
                          Session["LastName"] = info.LastName;
+                         Session["Username"] = info.Username;
                          Session["IsAuthenticated"] = true;
+
                         return RedirectToAction(ActionName, ControllerName);
 
-                    }
-
-                    return View();
-
+                  
                 }
                 catch (Exception ex)
                 {
