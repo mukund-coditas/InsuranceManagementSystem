@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,40 +20,38 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             }
 
 
-          
-            public ActionResult RolesFilterMethod()
-            {
-                return View();
-            }
-
-            [HttpPost]
-            public ActionResult RolesFilterMethod(string button)
-            {
-                Session["RoleId"] = (from u in entities.Roles where u.RoleName == button select u.RoleId).First();
-                return RedirectToAction("Registration");
-            }
+         
 
 
         public ActionResult Registration()
         {
-
-            if (Session["RoleId"] != null)
-            {
                 User user = new User();
 
                 return View(user);
-            }
-            return RedirectToAction("RolesFilterMethod");
+            
         }
 
 
 
             [HttpPost]
-            public ActionResult Registration(string username,string password, string firstname, string lastname,string company)
+            public ActionResult Registration(string username,string password, string firstname, string lastname,string company,string CurrentRoleId)
             {
 
             try
             {
+                var userDetails = (from u in entities.Users
+                            where u.Username == username
+                            select u).FirstOrDefault();
+
+                if (userDetails != null)
+                {
+                    ViewBag.UsernameAlreadyTaken = true;
+                    ViewBag.Password=password;
+                    ViewBag.FirstName=firstname;
+                    ViewBag.LastName=lastname;
+                    return View();
+                }
+
                 User user = new User();
                 user.Username = username;
                 user.FirstName = firstname;
@@ -60,11 +59,12 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 user.Password = password;
                 user.CompanyName = company;
 
-                user.RoleId = Convert.ToInt32(Session["RoleId"]);
+                user.RoleId = Convert.ToInt32(CurrentRoleId);
                 user.RegistrationDate = DateTime.Now;
                 entities.Users.Add(user);
                 entities.SaveChanges();
-                return RedirectToAction("LoginUser");
+
+                return RedirectToAction("RegisteredSuccessfully");
             }
             catch
             {
@@ -87,9 +87,9 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                         var info = (from u in entities.Users
                                     where u.Username == username
                                     && u.Password == password
-                                    select u).First();
+                                    select u).FirstOrDefault();
 
-                        string ActionName = (from r in entities.Roles where info.RoleId == r.RoleId select r.RoleName).First();
+                        string ActionName = (from r in entities.Roles where info.RoleId == r.RoleId select r.RoleName).FirstOrDefault();
                         string ControllerName = ActionName;
                         ActionName += "ProfilePage";
                          Session["CurrentUserId"]= info.UserId;
@@ -103,9 +103,10 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                   
                 }
                 catch (Exception ex)
-                {
+               { 
+                ViewBag.LoginFailed = true;
 
-                    return RedirectToAction("Failure","SuccessFailure");
+                return View();
                 }
 
 
@@ -116,7 +117,10 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             Session.Clear();
             return RedirectToAction("LoginUser","LoginRegister");
         }
-
+        public ActionResult RegisteredSuccessfully()
+        {
+            return View();
+        }
     }
     }
 

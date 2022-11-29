@@ -1,20 +1,39 @@
-﻿@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.CustomerStatus>
+﻿@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.CustomerRequest>
 
 @{
-    ViewBag.Title = "YourInsurances";
+    ViewBag.Title = "PendingRequests";
 }
 
 <style>
     body {
         background-color: antiquewhite;
     }
+    span {
+        font-size: 20px;
+        font-weight: bold;
+        margin:8rem;
+    }
 </style>
 
 
+
 <button class="btn btn-primary" style="margin-top:2rem;margin-bottom:1rem;margin-left:1rem;">
-    @Html.ActionLink("《 Back to Profile", "UserProfilePage", new { area = "" }, new { @style = "font-size:14px; color:white;" })
+    @Html.ActionLink("《 Back to Profile", "AdminProfilePage", new { area = "" }, new { @style = "font-size:14px; color:white;" })
 </button>
-<h1 style="text-align:center;font-weight:bold;margin-bottom:3rem; margin-top:0">Your Insurances</h1>
+<h1 style="text-align:center;font-weight:bold;margin-bottom:3rem; margin-top:0">Pending Requests</h1>
+
+@*@using (Html.BeginForm())
+{
+    @Html.RadioButton("Home Insurance", "HomeInsurance") <span style="">Home Insurance</span>
+    @Html.RadioButton("Heath Insurance", "HealthInsurance") <span >Health Insurance</span>
+    @Html.RadioButton("Automobile Insurance", "AutomobileInsurance") <span >Automobile Insurance</span>
+    @Html.RadioButton("Travel Insurance", "TravelInsurance") <span >Travel Insurance</span>
+    @Html.RadioButton("Life Insurance", "LifeInsurance") <span >Life Insurance</span>
+    @Html.RadioButton("Pension Plan", "PensionPlan") <span>Pension Plans</span>
+
+
+}*@
+
 
 <table class="table table-striped" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
     <thead style="background-color: #002d72; color:whitesmoke; font-size:medium">
@@ -41,7 +60,7 @@
             </th>
 
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.ApprovalStatus)
+                Action
             </th>
 
             <th></th>
@@ -71,18 +90,13 @@
                 </td>
 
                 <td style="padding: 2rem;">
-                    @if (item.ApprovalStatus.Equals("Pending"))
+
+                    @using (Html.BeginForm("VerifyRequest", "Admin"))
                     {
-                        <p class="btn-block btn-primary btn" style="padding:0.8rem">Pending</p>
+                        <button class="btn-block btn-primary btn" type="submit" style="padding:0.8rem" name="CustomerId" value=@item.CustomerId>Verify Details</button>
+
                     }
-                    else if (item.ApprovalStatus.Equals("Rejected"))
-                    {
-                        <p class="btn-block btn-danger btn" style="padding:0.8rem">Rejected</p>
-                    }
-                    else
-                    {
-                        <p class="btn-block btn-success btn" style="padding:0.8rem">&#10004 Approved</p>
-                    }
+
                 </td>
 
             </tr>

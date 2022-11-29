@@ -87,14 +87,14 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             var customer = (Customer)Session["Customer"];
 
             PuchasedDetails.DateOfPurchase = DateTime.Now;
-            PuchasedDetails.ApprovalStatus = "Not Approved";
+            PuchasedDetails.ApprovalStatus = "Pending";
             PuchasedDetails.InsuranceId = Convert.ToInt32(InsuranceId);
 
             customer.Purchaseds.Add(PuchasedDetails);
             entities.Customers.Add(customer);
             entities.SaveChanges();
 
-            return RedirectToAction("UserProfilePage");
+            return RedirectToAction("PurchasedSuccessfully");
         }
 
         public ActionResult HomeInsurance()
@@ -190,5 +190,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
 
         }
+        public ActionResult PurchasedSuccessfully()
+        {
+            return View();
+        }
+
+
     }
 }

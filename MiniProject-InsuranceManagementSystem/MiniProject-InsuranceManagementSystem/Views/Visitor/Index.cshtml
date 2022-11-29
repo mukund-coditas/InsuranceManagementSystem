@@ -5,10 +5,10 @@
 }
 
 <style>
-   /* #search-button {
+    /* #search-button {
         font-size: 1rem;
         font-family: Arial;
-    
+
         border-width: 0.2rem;
         color: #ffffff;
         border-color: #a511c0;
@@ -20,10 +20,10 @@
     #search-bar {
         width: 40rem;
         height: 3.5rem;
-        padding:2rem 2rem 2rem 1rem;
+        padding: 2rem 2rem 2rem 1rem;
         border-width: 0.1rem;
         color: black;
-        font-size:medium;
+        font-size: medium;
         border-color: green;
         border-radius: 0.5rem;
     }
@@ -41,30 +41,29 @@
 {
 
     <div style="text-align:center">
-        <input type="search"  id="search-bar" placeholder="Search Insurance...." name="userChoice" value="@ViewBag.insuranceSearched" />
+        <input type="search" id="search-bar" placeholder="Search Insurance...." name="userChoice" value="@ViewBag.insuranceSearched" />
         <input type="submit" value="Search" class="btn btn-success" style="height:4rem" />
-   </div>
+    </div>
 }
 <table class="table table-striped" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
     <thead style="background-color: #002d72; color:whitesmoke; font-size:medium">
         <tr>
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.InsuranceType)
+                Insurance Name
             </th>
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.SubType)
+                Insurance For
             </th>
 
             <th style="padding:2rem 2rem 2rem 0">
-                @Html.DisplayNameFor(model => model.YearlyPremium)
+                Yearly Premium (Rs.)
             </th>
             <th style="padding: 2rem 2rem 2rem 0">
-                @Html.DisplayNameFor(model => model.InsuranceProvider)
+                Insurance Provider
             </th>
             <th style="padding: 2rem ">
-                @Html.DisplayNameFor(model => model.ReleaseDate)
+                Released Date
             </th>
-
             <th></th>
         </tr>
     </thead>
@@ -87,9 +86,9 @@
                     @Html.DisplayFor(modelItem => item.InsuranceProvider)
                 </td>
                 <td style="padding:2rem;">
-                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    @item.ReleaseDate.ToShortDateString()
                 </td>
-                <td>
+                <td style="padding:2rem;">
                     <button type="button" class="btn btn-danger btn-rounded btn-block">
 
                         @Html.ActionLink("Purchase »", "LoginUser", "LoginRegister", new { area = "" }, new { @style = "color:white;" })
@@ -98,8 +97,9 @@
                 </td>
 
             </tr>
-            
+
         </tbody>
     }
 
 </table>
+

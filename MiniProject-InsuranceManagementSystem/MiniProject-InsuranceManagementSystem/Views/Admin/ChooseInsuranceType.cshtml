@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "ChooseInsuranceType";
+}
+
+<style>
+    span {
+        margin: 4rem;
+    }
+</style>
+<button class="btn btn-primary" style="margin-top:2rem;margin-bottom:1rem;margin-left:1rem;">
+    @Html.ActionLink("《 Back to Profile", "AdminProfilePage", new { area = "" }, new { @style = "font-size:14px; color:white;" })
+</button>
+<h1 style="color:black;font-weight:bold; text-align:center;margin-bottom:3rem">Choose Insurance</h1>
+
+<section style="text-align:center;">
+
+    <div>
+        <span>
+            <img src="~/images/healthinsurance.jpg" width="240">
+        </span>
+        <span>
+            <img src="~/images/homeinsurance.jpg" width="240">
+        </span>
+        <span>
+            <img src="~/images/lifeinsurance.jpg" width="240">
+        </span>
+    </div>
+    <div>
+        <span>
+            <img src="~/images/pensionplans.jpg" width="240">
+        </span>
+        <span>
+            <img src="~/images/travelinsurance.jpeg" width="240">
+        </span>
+        <span>
+            <img src="~/images/automobile.jpg" width="240">
+        </span>
+    </div>
+
+</section>
