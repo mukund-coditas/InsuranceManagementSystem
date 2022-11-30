@@ -3,11 +3,12 @@
     ViewBag.Title = "AccessDenied";
 }
 
-<h2 style="color:darkred">Access Denied</h2>
-<h3 style="color:red">Sorry, you are not authenticated user</h3>
+<script>
+    window.onload = function () {
+               swal('Access Denied !', 'Unauthenticated user', 'error', { button: 'Goto Login ' })
+                   .then((value) => { window.location.href = '/LoginRegister/LoginUser' });
+            }
 
-<div>
-    @Html.ActionLink("Back to Login", "LoginUser", "LoginRegister")
-</div>
+</script>
 
 

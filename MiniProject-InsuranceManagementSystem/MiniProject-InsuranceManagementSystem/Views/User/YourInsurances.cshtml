@@ -5,16 +5,30 @@
 }
 
 <style>
+
     body {
-        background-color: antiquewhite;
+        background-color: darkgray;
     }
+
+    h1 {
+        color: whitesmoke;
+        font-weight: bold;
+        font-family: 'Segoe UI',Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+
+
+    hr {
+        color: ghostwhite;
+    }
+
 </style>
 
 
 <button class="btn btn-primary" style="margin-top:2rem;margin-bottom:1rem;margin-left:1rem;">
     @Html.ActionLink("《 Back to Profile", "UserProfilePage", new { area = "" }, new { @style = "font-size:14px; color:white;" })
 </button>
-<h1 style="text-align:center;font-weight:bold;margin-bottom:3rem; margin-top:0">Your Insurances</h1>
+<hr><h1>Your Insurances</h1><hr style="margin-bottom:3rem;">
 
 <table class="table table-striped" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
     <thead style="background-color: #002d72; color:whitesmoke; font-size:medium">
@@ -27,24 +41,23 @@
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.MobileNumber)
+              Mobile Number
             </th>
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.InsuranceType)
+                Insurance Name
             </th>
 
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.SubType)
+               Insurance For
             </th>
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.PurchasedDate)
+                Purchased Date
             </th>
 
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.ApprovalStatus)
+               Approval Status
             </th>
 
-            <th></th>
         </tr>
     </thead>
     @foreach (var item in Model)

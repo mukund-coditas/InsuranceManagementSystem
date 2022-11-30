@@ -16,17 +16,34 @@
         @Html.ActionLink("Buy Insurance", "FillCustomerDetails")
     </div>*@
 
+
 <style>
+
     body {
-        background-color: antiquewhite
+            background-color: darkgray;
     }
+
+
+    h1 {
+        color: darkslateblue;
+        font-weight: bold;
+        font-family: 'Segoe UI',Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+    hr {
+        color: ghostwhite;
+    }
+
+
 </style>
 
 
 <section>
 
     <div class="container-fluid">
-        <h1 style="color:black;font-weight:bold; text-align:center;margin-bottom:3rem">Admin Dashboard</h1>
+
+        <hr> <h1>Admin Dashboard</h1><hr style="margin-bottom:3rem">
+        
 
         <div class="row">
             <div class="col-md-12 col-xl-4">
@@ -46,22 +63,22 @@
 
                         @*<button type="button" class="btn btn-primary btn-rounded btn-lg">
 
-                                        @Html.ActionLink("LogOut", "LogoutUser", "LoginRegister", new { area = "" }, new { @style = "font-size:16px; color:white;" })
+                                    @Html.ActionLink("LogOut", "LogoutUser", "LoginRegister", new { area = "" }, new { @style = "font-size:16px; color:white;" })
 
-                            </button>*@
+                        </button>*@
                         <hr>
                         <div class="d-flex justify-content-between text-center mb-5" style="margin-top:4rem; ">
 
                             <div>
                                 <button type="button" class="btn btn-success btn-rounded btn-lg">
 
-                                    @Html.ActionLink("Verified Requests »", "AllRequests", "Admin", new { area = "" }, new { @style = "font-size:16px; color:white;" })
+                                    @Html.ActionLink("Verified Requests »", "AllVerifiedRequests", "Admin", new { area = "" }, new { @style = "font-size:16px; color:white;" })
                                 </button>
                             </div>
                             <div class="px-3">
                                 <button type="button" class="btn btn-primary btn-rounded btn-lg">
 
-                                    @Html.ActionLink("Pending Requests »", "PendingRequests", "Admin", new { area = "" }, new { @style = "font-size:16px; color:white;" })
+                                    @Html.ActionLink("Pending Requests »", "ChooseInsuranceType", "Admin", new { area = "" }, new { @style = "font-size:16px; color:white;" })
 
                                 </button>
                             </div>

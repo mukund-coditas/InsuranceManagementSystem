@@ -144,7 +144,7 @@
     <Compile Include="Models\Customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomerRequest.cs" />
+    <Compile Include="Models\CustomerRequestHomeInsurance.cs" />
     <Compile Include="Models\CustomerStatus.cs" />
     <Compile Include="Models\HealthInsurance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -200,17 +200,18 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\adminlogo.png" />
-    <Content Include="images\automobile.jpg" />
-    <Content Include="images\healthinsurance.jpg" />
-    <Content Include="images\homeinsurance.jpg" />
+    <Content Include="images\agent.png" />
+    <Content Include="images\automobilenew.jpg" />
+    <Content Include="images\healthcare.png" />
+    <Content Include="images\homeinsurancenew.png" />
     <Content Include="images\insurance.png" />
     <Content Include="images\Insurancebgimageh.jpg" />
     <Content Include="images\lifeinsurance.jpg" />
     <Content Include="images\login.jpg" />
-    <Content Include="images\pensionplans.jpg" />
     <Content Include="images\profile.png" />
     <Content Include="images\registerlogo.png" />
-    <Content Include="images\travelinsurance.jpeg" />
+    <Content Include="images\retirementplannew.png" />
+    <Content Include="images\travelinsurancenew.svg" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -269,11 +270,14 @@
     <Content Include="Views\User\FillCustomerDetails.cshtml" />
     <Content Include="Views\User\PurchaseNewInsurance.cshtml" />
     <Content Include="Views\User\YourInsurances.cshtml" />
-    <Content Include="Views\Admin\PendingRequests.cshtml" />
-    <Content Include="Views\Admin\VerifyRequest.cshtml" />
     <Content Include="Views\LoginRegister\RegisteredSuccessfully.cshtml" />
     <Content Include="Views\User\PurchasedSuccessfully.cshtml" />
     <Content Include="Views\Admin\ChooseInsuranceType.cshtml" />
+    <Content Include="Views\Admin\HomeInsurancePendingRequests.cshtml" />
+    <Content Include="Views\Admin\ApprovedAlertDialog.cshtml" />
+    <Content Include="Views\Admin\AllVerifiedRequests.cshtml" />
+    <Content Include="Views\Agent\SuccessfullyAddedPolicyAlert.cshtml" />
+    <Content Include="Views\Agent\YourPolicies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

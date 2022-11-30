@@ -28,7 +28,10 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
-                return RedirectToAction("AddInsurance");
+                ViewBag.FirstName = Session["FirstName"];
+                ViewBag.LastName = Session["LastName"];
+                ViewBag.Username = Session["Username"];
+                return View();
 
             }
 
@@ -57,7 +60,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 insurance.ReleaseDate = DateTime.Now;
                 entities.Insurances.Add(insurance);
                 entities.SaveChanges();
-                return RedirectToAction("Index", "Visitor");
+                return RedirectToAction("SuccessfullyAddedPolicyAlert");
             }
             catch
             {
@@ -65,6 +68,21 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             }
             
             
+        }
+
+        public ActionResult SuccessfullyAddedPolicyAlert()
+        {
+            return View();
+        }
+
+        public ActionResult YourPolicies()
+        {
+
+            int currentAgentID = Convert.ToInt32(Session["CurrentUserId"]);
+
+            var listOfPolicies = (from ins in entities.Insurances where ins.UserId == currentAgentID select ins).ToList();
+
+            return View(listOfPolicies);
         }
     }
 }

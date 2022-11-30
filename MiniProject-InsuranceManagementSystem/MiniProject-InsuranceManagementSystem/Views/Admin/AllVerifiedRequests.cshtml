@@ -1,39 +1,38 @@
-﻿@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.CustomerRequest>
+﻿
+
+@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.CustomerStatus>
+
 
 @{
-    ViewBag.Title = "PendingRequests";
+    ViewBag.Title = "AllVerifiedRequests";
 }
 
 <style>
+
     body {
-        background-color: antiquewhite;
+        background-color: darkgray;
     }
-    span {
-        font-size: 20px;
+
+    h1 {
+        color: whitesmoke;
         font-weight: bold;
-        margin:8rem;
+        font-family: 'Segoe UI',Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+
+
+    hr {
+        color: ghostwhite;
     }
 </style>
-
 
 
 <button class="btn btn-primary" style="margin-top:2rem;margin-bottom:1rem;margin-left:1rem;">
     @Html.ActionLink("《 Back to Profile", "AdminProfilePage", new { area = "" }, new { @style = "font-size:14px; color:white;" })
 </button>
-<h1 style="text-align:center;font-weight:bold;margin-bottom:3rem; margin-top:0">Pending Requests</h1>
-
-@*@using (Html.BeginForm())
-{
-    @Html.RadioButton("Home Insurance", "HomeInsurance") <span style="">Home Insurance</span>
-    @Html.RadioButton("Heath Insurance", "HealthInsurance") <span >Health Insurance</span>
-    @Html.RadioButton("Automobile Insurance", "AutomobileInsurance") <span >Automobile Insurance</span>
-    @Html.RadioButton("Travel Insurance", "TravelInsurance") <span >Travel Insurance</span>
-    @Html.RadioButton("Life Insurance", "LifeInsurance") <span >Life Insurance</span>
-    @Html.RadioButton("Pension Plan", "PensionPlan") <span>Pension Plans</span>
-
-
-}*@
-
+<hr>
+<h1>Verified Requests</h1>
+<hr style="margin-bottom:3rem;">
 
 <table class="table table-striped" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
     <thead style="background-color: #002d72; color:whitesmoke; font-size:medium">
@@ -46,24 +45,24 @@
                 @Html.DisplayNameFor(model => model.LastName)
             </th>
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.MobileNumber)
+               Mobile Number
             </th>
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.InsuranceType)
+                Insurance Name
             </th>
 
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.SubType)
+
+                Insurance For
             </th>
             <th style="padding: 2rem">
-                @Html.DisplayNameFor(model => model.PurchasedDate)
+                Purchased Date
             </th>
 
             <th style="padding: 2rem">
-                Action
+                Approval Status
             </th>
 
-            <th></th>
         </tr>
     </thead>
     @foreach (var item in Model)
@@ -90,13 +89,7 @@
                 </td>
 
                 <td style="padding: 2rem;">
-
-                    @using (Html.BeginForm("VerifyRequest", "Admin"))
-                    {
-                        <button class="btn-block btn-primary btn" type="submit" style="padding:0.8rem" name="CustomerId" value=@item.CustomerId>Verify Details</button>
-
-                    }
-
+                        <p class="btn-block btn-success btn" style="padding:0.8rem">&#10004 Approved</p>
                 </td>
 
             </tr>
@@ -104,3 +97,5 @@
     }
 
 </table>
+
+

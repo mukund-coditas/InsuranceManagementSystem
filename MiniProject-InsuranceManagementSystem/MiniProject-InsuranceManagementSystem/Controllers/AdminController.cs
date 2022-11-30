@@ -41,7 +41,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
           }
 
-        public ActionResult PendingRequests()
+        public ActionResult HomeInsurancePendingRequests()
         {
             var result = (from customer in entities.Customers
                           join purchased in entities.Purchaseds
@@ -49,19 +49,25 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                           purchased.CustomerId
                           join insurance in entities.Insurances
                           on purchased.InsuranceId equals insurance.InsuranceId
+                          join homeInurance in entities.HomeInsurances
+                          on customer.CustomerId equals homeInurance.CustomerId
                           where purchased.ApprovalStatus == "Pending"
-                          select new CustomerRequest()
+                          select new CustomerRequestHomeInsurance()
                           {
                               FirstName = customer.FirstName,
                               LastName = customer.LastName,
                               MobileNumber = customer.MobileNumber.ToString(),
-                              CustomerId = customer.CustomerId,
+                              PurchasedId = purchased.PurchaseId,
                               InsuranceType = insurance.InsuranceType,
                               SubType = insurance.SubType,
-                              PurchasedDate = (DateTime)purchased.DateOfPurchase
-
+                              PurchasedDate = (DateTime)purchased.DateOfPurchase,
+                              HouseValuation= homeInurance.Valuation,
+                              City=homeInurance.City,
+                              PlanDuration=homeInurance.PlanDuration,
+                              HouseNumber=homeInurance.HouseNumber,
+                              FloorArea= (int)homeInurance.FloorArea           
+                              
                           }).ToList();
-
 
             return View(result);
         }
@@ -72,16 +78,63 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult VerifyRequest(int CustomerId)
+        public ActionResult VerifyRequest(string PurchasedId, string ApprovalStatus)
         {
+            try
+            {
+                int purchasedId = Convert.ToInt32(PurchasedId);
 
-            return View();
+                var result = (from p in entities.Purchaseds
+                              where p.PurchaseId == purchasedId
+                              select p).SingleOrDefault();
 
+                result.ApprovalStatus = ApprovalStatus;
+
+                entities.SaveChanges();
+
+                return RedirectToAction("ApprovedAlertDialog");
+            }
+
+            catch
+            {
+                return RedirectToAction("Failure","SuccessFailure");
+            }
         }
+
 
        public ActionResult ChooseInsuranceType()
         {
             return View();
+        }
+
+        public ActionResult ApprovedAlertDialog()
+        {
+            return View();
+        }
+
+        public ActionResult AllVerifiedRequests()
+        {
+            var result = (from customer in entities.Customers
+                          join purchased in entities.Purchaseds
+                          on customer.CustomerId equals
+                          purchased.CustomerId
+                          join insurance in entities.Insurances
+                          on purchased.InsuranceId equals insurance.InsuranceId
+                          join homeInurance in entities.HomeInsurances
+                          on customer.CustomerId equals homeInurance.CustomerId
+                          where purchased.ApprovalStatus == "Approved"
+                          select new CustomerStatus()
+                          {
+                              FirstName = customer.FirstName,
+                              LastName = customer.LastName,
+                              MobileNumber = customer.MobileNumber.ToString(),
+                              InsuranceType = insurance.InsuranceType,
+                              SubType = insurance.SubType,
+                              PurchasedDate = (DateTime)purchased.DateOfPurchase,
+                              
+                          }).ToList();
+
+            return View(result);
         }
     }
 }

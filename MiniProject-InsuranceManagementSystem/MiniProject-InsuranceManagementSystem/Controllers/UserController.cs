@@ -159,7 +159,6 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         public ActionResult YourInsurances()
         {
 
-            var CustomerStatus = new List<CustomerStatus>();
 
             int currentUserID = Convert.ToInt32(Session["CurrentUserId"]);
 

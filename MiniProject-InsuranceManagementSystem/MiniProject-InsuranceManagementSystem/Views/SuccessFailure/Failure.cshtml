@@ -3,11 +3,19 @@
     ViewBag.Title = "Failure";
 }
 
-<h2 style="color:red;font:bold;  border-bottom:0.1rem inset royalblue;">Login Failed : User not found</h2>
+<style>
+    body {
+        background-color: dimgrey;
+    }
+</style>
 
-<div>
-    @Html.ActionLink("Back to Login", "LoginUser","LoginRegister")
-</div>
 
+<script>
+    window.onload = function () {
+               swal('Something went wrong !', '', 'error', { button: 'OK' })
+                   .then((value) => { window.location.href = '/LoginRegister/LoginUser' });
+            }
+
+</script>
 
 
