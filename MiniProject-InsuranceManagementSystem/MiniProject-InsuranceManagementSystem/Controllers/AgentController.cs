@@ -60,6 +60,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 insurance.ReleaseDate = DateTime.Now;
                 entities.Insurances.Add(insurance);
                 entities.SaveChanges();
+
                 return RedirectToAction("SuccessfullyAddedPolicyAlert");
             }
             catch
@@ -77,12 +78,16 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult YourPolicies()
         {
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+            {
 
-            int currentAgentID = Convert.ToInt32(Session["CurrentUserId"]);
+                int currentAgentID = Convert.ToInt32(Session["CurrentUserId"]);
 
-            var listOfPolicies = (from ins in entities.Insurances where ins.UserId == currentAgentID select ins).ToList();
+                var listOfPolicies = (from ins in entities.Insurances where ins.UserId == currentAgentID select ins).ToList();
 
-            return View(listOfPolicies);
+                return View(listOfPolicies);
+            }
+            return RedirectToAction("AccessDenied", "SuccessFailure");
         }
     }
 }

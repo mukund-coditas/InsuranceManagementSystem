@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.CustomerStatus>
+﻿@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.sp_getYourInsurances_Result>
 
 @{
     ViewBag.Title = "YourInsurances";
@@ -80,7 +80,7 @@
                     @Html.DisplayFor(modelItem => item.SubType)
                 </td>
                 <td style="padding: 2rem;">
-                    @item.PurchasedDate.ToShortDateString()
+                    @item.DateOfPurchase.Value.ToShortDateString()
                 </td>
 
                 <td style="padding: 2rem;">

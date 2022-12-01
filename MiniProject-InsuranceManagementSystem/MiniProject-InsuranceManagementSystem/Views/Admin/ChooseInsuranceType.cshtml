@@ -65,27 +65,42 @@
                 </div>
             </div>
         </div>
-    <div class="row justify-content-center">
-        <div class="card insurance-type">
-            <img src="../images/automobilenew.jpg" class="card-img-top">
-            <div class="card-body">
-                <a href="#" class="btn btn-warning btn-block btn-lg">Auto Insurance »</a>
+        <div class="row justify-content-center">
+            <div class="card insurance-type">
+                <img src="../images/automobilenew.jpg" class="card-img-top">
+                <div class="card-body">
+                    <a href="@Url.Action("AutomobileInsurancePendingRequests", "Admin")" class="btn btn-warning btn-block btn-lg">Auto Insurance »</a>
+                </div>
             </div>
+
+            <div class="card insurance-type">
+                <img src="../images/retirementplannew.png" class="card-img-top">
+                <div class="card-body">
+                    <a href="#" class="btn btn-success btn-block btn-lg" style="margin-top:1rem">Pension Plan »</a>
+                </div>
+            </div>
+            
+            <div class="card insurance-type">
+                <img src="~/images/homeinsurancenew.png" class="card-img-top">
+                <div class="card-body">
+                    <a href="@Url.Action("HomeInsurancePendingRequests", "Admin")" class="btn btn-dark btn-block btn-lg" style="margin-top:1rem"> Home Insurance »</a>
+                </div>
+            </div>
+        </div>
         </div>
 
-        <div class="card insurance-type">
-            <img src="../images/retirementplannew.png" class="card-img-top">
-            <div class="card-body">
-                <a href="#" class="btn btn-success btn-block btn-lg" style="margin-top:1rem">Pension Plan »</a>
-            </div>
-        </div>
+   @*card insurance-type{
+    ajax(
+       method 
+        if (success)
+         {
+    
+           }
+    else{
+    console.error();
+    }
+    )
+    }*@
 
-        <div class="card insurance-type">
-            <img src="~/images/homeinsurancenew.png" class="card-img-top">
-            <div class="card-body">
-                <a href="@Url.Action("HomeInsurancePendingRequests", "Admin")" class="btn btn-dark btn-block btn-lg" style="margin-top:1rem"> Home Insurance »</a>
-            </div>
-        </div>
-        </div>
-        </div>
+
 </section>

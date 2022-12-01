@@ -1,6 +1,6 @@
 ﻿
 
-@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.CustomerStatus>
+@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.sp_getAllVerifiedRequests_Result>
 
 
 @{
@@ -85,7 +85,7 @@
                     @Html.DisplayFor(modelItem => item.SubType)
                 </td>
                 <td style="padding: 2rem;">
-                    @item.PurchasedDate.ToShortDateString()
+                    @item.DateOfPurchase.Value.ToShortDateString()
                 </td>
 
                 <td style="padding: 2rem;">

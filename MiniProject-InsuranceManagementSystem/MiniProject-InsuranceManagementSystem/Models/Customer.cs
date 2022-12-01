@@ -29,17 +29,16 @@ namespace MiniProject_InsuranceManagementSystem.Models
     
         public int CustomerId { get; set; }
 
-        [Required(ErrorMessage ="FirstName field is required")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "FirstName is not valid")] 
+        [Required(ErrorMessage = "FirstName field is required")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "FirstName is not valid")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "LastName field is required")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "LastName is not valid")]
         public string LastName { get; set; }
 
-
         [Required(ErrorMessage = "MobileNumber field is required")]
-        [Range(999999999,9999999999,ErrorMessage ="Mobile number is not valid")]
+        [Range(999999999, 9999999999, ErrorMessage = "Mobile number is not valid")]
         public long MobileNumber { get; set; }
         public Nullable<int> UserId { get; set; }
     

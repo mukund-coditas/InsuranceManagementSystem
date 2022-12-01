@@ -1,9 +1,12 @@
 ﻿
-@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.sp_getHomeInsurancePendingRequests_Result>
+@model IEnumerable<MiniProject_InsuranceManagementSystem.Models.sp_getAutomobileInsurancePendingRequests_Result>
 
 @{
-    ViewBag.Title = "HomeInsurancePendingRequests";
+    ViewBag.Title = "AutomobileInsurancePendingRequests";
 }
+
+
+
 
 <style>
 
@@ -22,12 +25,11 @@
         color: ghostwhite;
     }
 
-    h5{
-        display:inline;
-        font-weight:bold;
-        margin-right:0.5rem;
+    h5 {
+        display: inline;
+        font-weight: bold;
+        margin-right: 0.5rem;
     }
-
 </style>
 
 
@@ -36,20 +38,10 @@
     @Html.ActionLink("《 Go Back", "ChooseInsuranceType", new { area = "" }, new { @style = "font-size:14px; color:white;" })
 </button>
 <hr>
-<h1>Pending Requests for Home Insurance</h1>
+<h1>Pending Requests for Automobile Insurance</h1>
 <hr style="margin-bottom:3rem">
 
-@*@using (Html.BeginForm())
-    {
-        @Html.RadioButton("Home Insurance", "HomeInsurance") <span style="">Home Insurance</span>
-        @Html.RadioButton("Heath Insurance", "HealthInsurance") <span >Health Insurance</span>
-        @Html.RadioButton("Automobile Insurance", "AutomobileInsurance") <span >Automobile Insurance</span>
-        @Html.RadioButton("Travel Insurance", "TravelInsurance") <span >Travel Insurance</span>
-        @Html.RadioButton("Life Insurance", "LifeInsurance") <span >Life Insurance</span>
-        @Html.RadioButton("Pension Plan", "PensionPlan") <span>Pension Plans</span>
 
-
-    }*@
 
 
 <table class="table table-striped" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
@@ -62,7 +54,7 @@
             <th style="padding: 2rem">
                 Mobile Number
             </th>
-          
+
 
             <th style="padding: 2rem">
                 Insurance For
@@ -72,7 +64,7 @@
             </th>
 
             <th style="padding: 2rem">
-              House Details
+                Vehicle Details
             </th>
 
             <th style="padding: 2rem">
@@ -103,28 +95,27 @@
 
                 <td style="padding: 2rem;">
 
-                    <div style="margin-bottom:0.2rem;"> <h5>HouseNumber :</h5>  @Html.DisplayFor(modelItem => item.HouseNumber)</div>
-                    <div style="margin-bottom:0.2rem;"><h5> Floor Area : </h5> @Html.DisplayFor(modelItem => item.FloorArea) Sqft</div>
-                    <div style="margin-bottom:0.2rem;"> <h5>Plan Duration :</h5>  @Html.DisplayFor(modelItem => item.PlanDuration) years</div>
-                    <div style="margin-bottom:0.2rem;"> <h5> House Valuation :</h5>  Rs. @Html.DisplayFor(modelItem => item.Valuation)</div>
-                    <div style="margin-bottom:0.2rem;"> <h5>City : </h5> @Html.DisplayFor(modelItem => item.City)</div>
+                    <div style="margin-bottom:0.2rem;"> <h5>Vehicle Model :</h5>  @Html.DisplayFor(modelItem => item.VehicleModel)</div>
+                    <div style="margin-bottom:0.2rem;"><h5> Vehicle Number : </h5> @Html.DisplayFor(modelItem => item.VehicleNumber) </div>
+                    <div style="margin-bottom:0.2rem;"> <h5>Vehicle Age :</h5>  @Html.DisplayFor(modelItem => item.VehicleAge) Months</div>
+                    <div style="margin-bottom:0.2rem;"> <h5> Plan Duration :</h5>  Rs. @Html.DisplayFor(modelItem => item.PlanDuration) Years</div>
 
                 </td>
 
                 <td style="padding: 2rem;">
 
                     @*@using (Html.BeginForm("VerifyRequest", "Admin"))
-            {
-                <button class="btn-block btn-primary btn" type="submit" style="padding:0.8rem" name="CustomerId" value=@item.CustomerId>Verify Details</button>
+                        {
+                            <button class="btn-block btn-primary btn" type="submit" style="padding:0.8rem" name="CustomerId" value=@item.CustomerId>Verify Details</button>
 
-            }*@
+                        }*@
 
                     @using (Html.BeginForm("VerifyRequest", "Admin"))
 
                     {
                         <input type="number" hidden value="@item.PurchaseId" name="PurchasedId">
                         <button class="btn-block btn-success btn" type="submit" style="padding:0.8rem" name="ApprovalStatus" value="Approved">&#10004 Approve</button>
-                        <button class="btn-block btn-danger btn" type="submit" style="padding:0.8rem" name="ApprovalStatus"  value="Rejected">Reject</button>
+                        <button class="btn-block btn-danger btn" type="submit" style="padding:0.8rem" name="ApprovalStatus" value="Rejected">Reject</button>
                     }
 
                 </td>
@@ -134,5 +125,7 @@
     }
 
 </table>
+
+
 
 

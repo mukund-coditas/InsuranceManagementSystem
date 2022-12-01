@@ -25,6 +25,11 @@
         window.onload = function () {
             document.getElementById('CurrentRoleId').style.visibility = "hidden";
         }
+
+        function roleAssigner() {
+            var CurrentRole = document.getElementById('CurrentRole');
+            CurrentRole.value = document.getElementById('CurrentRoleId').value;
+        }
     </script>
 
 </head>
@@ -50,7 +55,7 @@
                 </ul>
                
                 <div>
-                    <select style="padding: 1rem; margin-left:2rem; background-color: #232325; border-color: #221f1f;color:white;font-size:medium;font-weight:bold" id="CurrentRoleId">
+                    <select onchange="roleAssigner()" style="padding: 1rem; margin-left:2rem; background-color: #232325; border-color: #221f1f;color:white;font-size:medium;font-weight:bold" id="CurrentRoleId">
                         <option value="1">Register as Admin</option>
                         <option value="3"> Register as Agent</option>
                         <option selected value="2"> Register as User</option>
@@ -73,5 +78,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    
 </body>
 </html>

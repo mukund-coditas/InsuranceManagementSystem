@@ -263,6 +263,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_getAllVerifiedRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getAutomobileInsurancePendingRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getHomeInsurancePendingRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_getYourInsurances" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CurrentUserId" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="InsuranceManagementSystemDbModelStoreContainer">
     <EntitySet Name="AutomobileInsurance" EntityType="Self.AutomobileInsurance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />

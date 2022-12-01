@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MiniProject_InsuranceManagementSystem.Models
+namespace MiniProject_InsuranceManagementSystem
 {
     using System;
     using System.Data.Entity;
@@ -15,10 +15,10 @@ namespace MiniProject_InsuranceManagementSystem.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class InsuranceManagementSystemDbEntities1 : DbContext
+    public partial class InsuranceManagementSystemDbEntities2 : DbContext
     {
-        public InsuranceManagementSystemDbEntities1()
-            : base("name=InsuranceManagementSystemDbEntities1")
+        public InsuranceManagementSystemDbEntities2()
+            : base("name=InsuranceManagementSystemDbEntities2")
         {
         }
     
@@ -27,17 +27,6 @@ namespace MiniProject_InsuranceManagementSystem.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AutomobileInsurance> AutomobileInsurances { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<HealthInsurance> HealthInsurances { get; set; }
-        public virtual DbSet<HomeInsurance> HomeInsurances { get; set; }
-        public virtual DbSet<Insurance> Insurances { get; set; }
-        public virtual DbSet<LifeInsurance> LifeInsurances { get; set; }
-        public virtual DbSet<PensionPlan> PensionPlans { get; set; }
-        public virtual DbSet<Purchased> Purchaseds { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<TravelInsurance> TravelInsurances { get; set; }
-        public virtual DbSet<User> Users { get; set; }
     
         public virtual ObjectResult<sp_getAllVerifiedRequests_Result> sp_getAllVerifiedRequests()
         {
@@ -56,11 +45,6 @@ namespace MiniProject_InsuranceManagementSystem.Models
                 new ObjectParameter("CurrentUserId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getYourInsurances_Result>("sp_getYourInsurances", currentUserIdParameter);
-        }
-    
-        public virtual ObjectResult<sp_getAutomobileInsurancePendingRequests_Result> sp_getAutomobileInsurancePendingRequests()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAutomobileInsurancePendingRequests_Result>("sp_getAutomobileInsurancePendingRequests");
         }
     }
 }

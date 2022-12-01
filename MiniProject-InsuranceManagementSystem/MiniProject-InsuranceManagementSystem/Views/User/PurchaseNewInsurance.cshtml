@@ -65,7 +65,7 @@
                     @Html.DisplayFor(modelItem => item.InsuranceProvider)
                 </td>
                 <td style="padding:2rem;">
-                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                     @item.ReleaseDate.ToShortDateString()
                 </td>
                 <td>
                     @using (Html.BeginForm("ConfirmationOfInsurancePurchase", "User"))

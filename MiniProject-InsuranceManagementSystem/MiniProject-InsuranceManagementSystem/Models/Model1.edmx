@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InsuranceManagementSystemDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InsuranceManagementSystemDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AutomobileInsurance">
           <Key>
             <PropertyRef Name="id" />
@@ -268,6 +268,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_getAllVerifiedRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getAutomobileInsurancePendingRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getHomeInsurancePendingRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_getYourInsurances" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CurrentUserId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="InsuranceManagementSystemDbModelStoreContainer">
           <EntitySet Name="AutomobileInsurance" EntityType="Self.AutomobileInsurance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
@@ -325,8 +331,7 @@
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InsuranceManagementSystemDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -671,7 +676,58 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <FunctionImport Name="sp_getAllVerifiedRequests" ReturnType="Collection(InsuranceManagementSystemDbModel.sp_getAllVerifiedRequests_Result)" />
+          <FunctionImport Name="sp_getHomeInsurancePendingRequests" ReturnType="Collection(InsuranceManagementSystemDbModel.sp_getHomeInsurancePendingRequests_Result)" />
+          <FunctionImport Name="sp_getYourInsurances" ReturnType="Collection(InsuranceManagementSystemDbModel.sp_getYourInsurances_Result)">
+          <Parameter Name="CurrentUserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getAutomobileInsurancePendingRequests" ReturnType="Collection(InsuranceManagementSystemDbModel.sp_getAutomobileInsurancePendingRequests_Result)" />
         </EntityContainer>
+        <ComplexType Name="sp_getAllVerifiedRequests_Result">
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="60" />
+          <Property Type="Int64" Name="MobileNumber" Nullable="false" />
+          <Property Type="String" Name="InsuranceType" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="SubType" Nullable="true" MaxLength="60" />
+          <Property Type="DateTime" Name="DateOfPurchase" Nullable="true" />
+          <Property Type="String" Name="ApprovalStatus" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="sp_getHomeInsurancePendingRequests_Result">
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="60" />
+          <Property Type="Int64" Name="MobileNumber" Nullable="false" />
+          <Property Type="Int32" Name="PurchaseId" Nullable="false" />
+          <Property Type="String" Name="InsuranceType" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="SubType" Nullable="true" MaxLength="60" />
+          <Property Type="DateTime" Name="DateOfPurchase" Nullable="true" />
+          <Property Type="Int64" Name="Valuation" Nullable="false" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="PlanDuration" Nullable="false" />
+          <Property Type="String" Name="HouseNumber" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="FloorArea" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getYourInsurances_Result">
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="60" />
+          <Property Type="Int64" Name="MobileNumber" Nullable="false" />
+          <Property Type="String" Name="InsuranceType" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="SubType" Nullable="true" MaxLength="60" />
+          <Property Type="DateTime" Name="DateOfPurchase" Nullable="true" />
+          <Property Type="String" Name="ApprovalStatus" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="sp_getAutomobileInsurancePendingRequests_Result">
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="60" />
+          <Property Type="Int64" Name="MobileNumber" Nullable="false" />
+          <Property Type="Int32" Name="PurchaseId" Nullable="false" />
+          <Property Type="String" Name="InsuranceType" Nullable="false" MaxLength="60" />
+          <Property Type="String" Name="SubType" Nullable="true" MaxLength="60" />
+          <Property Type="DateTime" Name="DateOfPurchase" Nullable="true" />
+          <Property Type="String" Name="VehicleModel" Nullable="true" MaxLength="60" />
+          <Property Type="Int32" Name="VehicleAge" Nullable="false" />
+          <Property Type="String" Name="VehicleNumber" Nullable="false" MaxLength="60" />
+          <Property Type="Int32" Name="PlanDuration" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -820,6 +876,67 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAllVerifiedRequests" FunctionName="InsuranceManagementSystemDbModel.Store.sp_getAllVerifiedRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InsuranceManagementSystemDbModel.sp_getAllVerifiedRequests_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="InsuranceType" ColumnName="InsuranceType" />
+                <ScalarProperty Name="SubType" ColumnName="SubType" />
+                <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getHomeInsurancePendingRequests" FunctionName="InsuranceManagementSystemDbModel.Store.sp_getHomeInsurancePendingRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InsuranceManagementSystemDbModel.sp_getHomeInsurancePendingRequests_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
+                <ScalarProperty Name="InsuranceType" ColumnName="InsuranceType" />
+                <ScalarProperty Name="SubType" ColumnName="SubType" />
+                <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+                <ScalarProperty Name="Valuation" ColumnName="Valuation" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="FloorArea" ColumnName="FloorArea" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getYourInsurances" FunctionName="InsuranceManagementSystemDbModel.Store.sp_getYourInsurances">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InsuranceManagementSystemDbModel.sp_getYourInsurances_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="InsuranceType" ColumnName="InsuranceType" />
+                <ScalarProperty Name="SubType" ColumnName="SubType" />
+                <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+                <ScalarProperty Name="ApprovalStatus" ColumnName="ApprovalStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_getAutomobileInsurancePendingRequests" FunctionName="InsuranceManagementSystemDbModel.Store.sp_getAutomobileInsurancePendingRequests">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InsuranceManagementSystemDbModel.sp_getAutomobileInsurancePendingRequests_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
+                <ScalarProperty Name="InsuranceType" ColumnName="InsuranceType" />
+                <ScalarProperty Name="SubType" ColumnName="SubType" />
+                <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+                <ScalarProperty Name="VehicleModel" ColumnName="VehicleModel" />
+                <ScalarProperty Name="VehicleAge" ColumnName="VehicleAge" />
+                <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+                <ScalarProperty Name="PlanDuration" ColumnName="PlanDuration" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

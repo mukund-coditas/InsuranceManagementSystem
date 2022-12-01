@@ -76,22 +76,22 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult PurchaseNewInsurance()
         {
-            var insurances = Session["SuggestedInsurances"];
-            return View(insurances);
+            var listofSuggestedInsurancePolicies = Session["SuggestedInsurances"];
+            return View(listofSuggestedInsurancePolicies);
         }
 
         [HttpPost]
          public ActionResult ConfirmationOfInsurancePurchase(string InsuranceId)
         {
             var PuchasedDetails = new Purchased();
-            var customer = (Customer)Session["Customer"];
+            var currentCustomer = (Customer)Session["Customer"];
 
             PuchasedDetails.DateOfPurchase = DateTime.Now;
             PuchasedDetails.ApprovalStatus = "Pending";
             PuchasedDetails.InsuranceId = Convert.ToInt32(InsuranceId);
 
-            customer.Purchaseds.Add(PuchasedDetails);
-            entities.Customers.Add(customer);
+            currentCustomer.Purchaseds.Add(PuchasedDetails);
+            entities.Customers.Add(currentCustomer);
             entities.SaveChanges();
 
             return RedirectToAction("PurchasedSuccessfully");
@@ -118,13 +118,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 homeInsurance.BuildingType = Request.Form["building-type"].ToString();
                 customer.HomeInsurances.Add(homeInsurance);
 
-                var insurances = (from items in entities.Insurances
-                                  where items.InsuranceType == "Home Insurance" &&
-                                  items.SubType == homeInsurance.BuildingType
-                                  select items).ToList();
+                var listofSuggestedInsurancePolicies = (from item in entities.Insurances  where item.InsuranceType == "Home Insurance" &&
+                                  item.SubType == homeInsurance.BuildingType select item).ToList();
 
                 Session["Customer"] = customer;
-                Session["SuggestedInsurances"] = insurances;
+                Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
                 return RedirectToAction("PurchaseNewInsurance");
             }
             return View();
@@ -143,7 +141,37 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult AutomobileInsurance()
         {
+            if (Session["Customer"] != null)
+            {
+                AutomobileInsurance automobileInsurance = new AutomobileInsurance();
+
+                return View(automobileInsurance);
+            }
+
+            return RedirectToAction("FillCustomerDetails");
+        }
+
+        [HttpPost]
+        public ActionResult AutomobileInsurance(AutomobileInsurance automobileInsurance)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                var customer = (Customer)Session["Customer"];
+                automobileInsurance.VehicleType = Request.Form["vehicle-type"].ToString();
+
+                customer.AutomobileInsurances.Add(automobileInsurance);
+
+                var listofSuggestedInsurancePolicies = (from item in entities.Insurances  where item.InsuranceType == "Automobile Insurance" &&
+                                                     item.SubType == automobileInsurance.VehicleType select item).ToList();
+
+                Session["Customer"] = customer;
+                Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
+                return RedirectToAction("PurchaseNewInsurance");
+            }
             return View();
+
         }
 
         public ActionResult PensionPlans()
@@ -153,43 +181,70 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult TravelInsurance()
         {
+            //if (Session["Customer"] != null)
+            //{
+                TravelInsurance travelInsurance = new TravelInsurance();
+
+                return View(travelInsurance);
+            //}
+
+            //return RedirectToAction("FillCustomerDetails");
+        }
+
+
+        [HttpPost]
+        public ActionResult TravelInsurance(TravelInsurance travelInsurance)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+            }
+
             return View();
         }
 
-        public ActionResult YourInsurances()
-        {
+            public ActionResult YourInsurances()
+          {
+
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+            {
+
+                int currentUserID = Convert.ToInt32(Session["CurrentUserId"]);
+
+                var listofYourInsurances = entities.sp_getYourInsurances(currentUserID);
+
+            //var listOfCustomers = ( from cts in entities.Customers where
+            //                     cts.UserId == currentUserID select cts).ToList();
 
 
-            int currentUserID = Convert.ToInt32(Session["CurrentUserId"]);
+            //var listofYourInsurances = (from customer in listOfCustomers
+            //           join purchased in entities.Purchaseds
+            //           on customer.CustomerId equals purchased.CustomerId
+            //           join insurance in entities.Insurances
+            //           on purchased.InsuranceId equals insurance.InsuranceId
+            //           select new CustomerStatus()
+            //           {
+            //               FirstName=customer.FirstName,
+            //               LastName=customer.LastName,
+            //               MobileNumber=customer.MobileNumber.ToString(),
+            //               ApprovalStatus=purchased.ApprovalStatus,
+            //               InsuranceType=insurance.InsuranceType,
+            //               SubType=insurance.SubType,
+            //               PurchasedDate= (DateTime)purchased.DateOfPurchase
 
-            var listOfCustomers = ( from cts in entities.Customers where
-                          cts.UserId == currentUserID select cts).ToList();
-
-
-            var result = (from customer in listOfCustomers
-                       join purchased in entities.Purchaseds
-                       on customer.CustomerId equals
-                       purchased.CustomerId
-                       join insurance in entities.Insurances
-                       on purchased.InsuranceId equals insurance.InsuranceId
-                       select new CustomerStatus()
-                       {
-                           FirstName=customer.FirstName,
-                           LastName=customer.LastName,
-                           MobileNumber=customer.MobileNumber.ToString(),
-                           ApprovalStatus=purchased.ApprovalStatus,
-                           InsuranceType=insurance.InsuranceType,
-                           SubType=insurance.SubType,
-                           PurchasedDate= (DateTime)purchased.DateOfPurchase
-
-                       }).ToList();
+            //           }).ToList();
 
 
-            return View(result);
+            return View(listofYourInsurances);
+           }
+
+           return RedirectToAction("AccessDenied", "SuccessFailure");
+
+         }
 
 
-        }
-        public ActionResult PurchasedSuccessfully()
+    public ActionResult PurchasedSuccessfully()
         {
             return View();
         }

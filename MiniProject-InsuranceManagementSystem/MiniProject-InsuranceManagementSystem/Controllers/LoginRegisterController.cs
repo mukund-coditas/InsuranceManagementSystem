@@ -39,9 +39,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
             try
             {
-                var userDetails = (from u in entities.Users
-                            where u.Username == username
-                            select u).FirstOrDefault();
+                var userDetails = (from u in entities.Users  where u.Username == username select u).FirstOrDefault();
 
                 if (userDetails != null)
                 {
@@ -84,10 +82,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 try
                 {
                    
-                        var info = (from u in entities.Users
-                                    where u.Username == username
-                                    && u.Password == password
-                                    select u).FirstOrDefault();
+                        var info = (from u in entities.Users  where u.Username == username && u.Password == password select u).FirstOrDefault();
 
                         string ActionName = (from r in entities.Roles where info.RoleId == r.RoleId select r.RoleName).FirstOrDefault();
                         string ControllerName = ActionName;
