@@ -40,7 +40,7 @@
 </style>
 
 <hr>
-<h1 style="color:white; text-align:center; font-weight:bold;">List of Insurances</h1>
+<h1 style="color:white; text-align:center; font-weight:bold;">List of Available Policies</h1>
 <hr>
 
 @using (Html.BeginForm("Index", "Visitor"))
@@ -51,6 +51,8 @@
         <input type="submit" value="Search" class="btn btn-success" style="height:4rem" />
     </div>
 }
+
+    
 <table class="table table-striped table-hover" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
     <thead style="background-color: #002d72; color:whitesmoke; font-size:medium">
         <tr>
@@ -76,7 +78,7 @@
 
     @foreach (var item in Model)
     {
-        <tbody >
+        <tbody>
 
             <tr style="margin:1rem;">
                 <td style="padding:2rem;font-weight:bold;font-size:medium" >

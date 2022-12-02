@@ -220,6 +220,7 @@
     <Content Include="images\Insurancebgimageh.jpg" />
     <Content Include="images\lifeinsurance.jpg" />
     <Content Include="images\login.jpg" />
+    <Content Include="images\logoutT.png" />
     <Content Include="images\passwordInVisible.png" />
     <Content Include="images\passwordVisible.png" />
     <Content Include="images\profile.png" />
@@ -298,6 +299,7 @@
     <Content Include="Views\User\PensionPlans.cshtml" />
     <Content Include="Views\User\LifeInsurance.cshtml" />
     <Content Include="Views\User\HealthInsurance.cshtml" />
+    <Content Include="Views\User\ChooseInsurance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

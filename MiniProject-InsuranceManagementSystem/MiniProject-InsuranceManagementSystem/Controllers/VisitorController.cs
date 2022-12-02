@@ -20,10 +20,10 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         }
 
 
-        [HttpGet]
         public ActionResult Index()
         {
             var insurances = entities.Insurances.OrderByDescending(x => x.ReleaseDate).ToList();
+
             return View(insurances);
         }
 
@@ -44,9 +44,14 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             }
             ViewBag.insuranceSearched = userChoice;
             if (allInsurances.Count > 0)
+            {
                 return View(allInsurances);
+            }
             else
+            {
+
                 return RedirectToAction("Index");
+            }
 
 
         }

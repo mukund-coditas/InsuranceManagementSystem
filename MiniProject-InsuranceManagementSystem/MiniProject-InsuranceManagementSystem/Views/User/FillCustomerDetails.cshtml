@@ -60,21 +60,7 @@
     <div style="border-radius: 1rem; box-shadow: 0px 7px 35px -4px black; background-color: white; margin: 1rem 30rem; padding: 2rem 0; ">
 
         <div class="form-horizontal">
-
-            <div class="col-12" style="margin:1rem 1rem 2rem 11rem">
-                <label for="insurances" class="form-label">Choose Insurance : </label>
-                <select name="insurances">
-                    <option value="LifeInsurance">Life Insurance</option>
-                    <option value="PensionPlans">Pension Plans</option>
-                    <option value="HealthInsurance">Health Insurance</option>
-                    <option value="HomeInsurance" selected>Home Insurance</option>
-                    <option value="AutomobileInsurance">Automobile Insurance</option>
-                    <option value="TravelInsurance">Travel Insurance</option>
-                </select>
-            </div>
-
-            <div class="form-horizontal">
-              
+ 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group" style="margin-left:10rem">
                     @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-4", @style= "margin-left:-4rem;margin-bottom:0.5rem;" })
@@ -106,7 +92,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
 

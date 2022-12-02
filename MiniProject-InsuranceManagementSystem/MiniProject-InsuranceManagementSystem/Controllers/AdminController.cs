@@ -110,8 +110,8 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 entities.SaveChanges();
 
                 return RedirectToAction("ApprovedAlertDialog");
-            }
 
+            }
             catch
             {
                 return RedirectToAction("Failure","SuccessFailure");
@@ -155,6 +155,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 return View(listOfVerifiedRequests);
             }
+
             return RedirectToAction("AccessDenied", "SuccessFailure");
 
         }

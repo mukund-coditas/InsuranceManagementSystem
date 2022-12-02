@@ -57,10 +57,10 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
             if (ModelState.IsValid)
             {
-                var InsuranceType = Request.Form["insurances"].ToString();
                 customer.UserId = Convert.ToInt32(Session["CurrentUserId"]);
                 Session["Customer"] = customer;
-                return RedirectToAction(InsuranceType);
+                return RedirectToAction("ChooseInsurance");
+
             }
 
             return View();
@@ -181,14 +181,14 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult TravelInsurance()
         {
-            //if (Session["Customer"] != null)
-            //{
+            if (Session["Customer"] != null)
+            {
                 TravelInsurance travelInsurance = new TravelInsurance();
 
                 return View(travelInsurance);
-            //}
+            }
 
-            //return RedirectToAction("FillCustomerDetails");
+            return RedirectToAction("FillCustomerDetails");
         }
 
 
@@ -198,7 +198,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
             if (ModelState.IsValid)
             {
-
+              //
             }
 
             return View();
@@ -249,6 +249,16 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             return View();
         }
 
+  
+        public ActionResult ChooseInsurance()
 
+        {
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+            {
+                return View();
+                }
+            return RedirectToAction("AccessDenied", "SuccessFailure");
+
+        }
     }
 }
