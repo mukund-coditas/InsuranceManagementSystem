@@ -100,11 +100,13 @@
                                         <p style="color:#fa2b2b;font-size:1.4rem;font-weight:bold;margin-top:0.5rem;">Username already taken, Try different !</p>
                                     }
 
-                                    <div class="mb-4">
-                                        <label class="form-label" for="password">Password</label>
+                                <div class="mb-1">
+                                    <label class="form-label" for="password">Password</label>
 
-                                        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required value="@ViewBag.Password" />
-                                    </div>
+                                    <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required value="@ViewBag.Password" />
+                                    <img src="~/images/passwordInVisible.png" width="20" style="margin-left:25rem;margin-top:-5.4rem;" id="password-visibility" onclick="passwordVisibilityChanger()" />
+
+                                </div>
                                     <div class="mb-4">
                                         <label class="form-label" for="firstname">FirstName</label>
 
@@ -130,7 +132,8 @@
 
                                     </div>
                                     <p class="mb-5 pb-lg-2" style="color: black;">
-                                        Already have an Account ?  @Html.ActionLink("Login Here", "LoginUser")
+                                        Already have an Account ?  @Html.ActionLink("Login Here", "LoginUser", "LoginRegister", new { area = "" }, new { @style = "font-size:15px; font-weight:bold; color:cornflowerblue;" });
+
                                     </p>
 
                                 </form>
@@ -151,6 +154,23 @@
         var CurrentRole = document.getElementById('CurrentRole');
         CurrentRole.value = document.getElementById('CurrentRoleId').value;
     }
+
+
+    function passwordVisibilityChanger() {
+
+            var password = document.getElementById('password');
+
+            if (password.type == 'password') {
+                password.type = 'text';
+                document.getElementById('password-visibility').src = '/images/passwordVisible.png';
+            } else {
+                password.type = 'password';
+                document.getElementById('password-visibility').src = '/images/passwordInVisible.png';
+
+            }
+
+        }
+
 </script>
 
 

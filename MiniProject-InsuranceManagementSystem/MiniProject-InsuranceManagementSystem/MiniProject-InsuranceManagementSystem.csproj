@@ -220,6 +220,8 @@
     <Content Include="images\Insurancebgimageh.jpg" />
     <Content Include="images\lifeinsurance.jpg" />
     <Content Include="images\login.jpg" />
+    <Content Include="images\passwordInVisible.png" />
+    <Content Include="images\passwordVisible.png" />
     <Content Include="images\profile.png" />
     <Content Include="images\registerlogo.png" />
     <Content Include="images\retirementplannew.png" />

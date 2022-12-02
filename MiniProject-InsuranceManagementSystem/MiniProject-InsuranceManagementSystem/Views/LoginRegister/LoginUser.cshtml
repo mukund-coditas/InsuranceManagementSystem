@@ -56,10 +56,12 @@
                                         <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Enter username" required />
                                     </div>
 
-                                    <div class="mb-4">
+                                    <div class="mb-2">
                                         <label class="form-label" for="password">Password</label>
 
-                                        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required />
+                                        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required/>
+                                        <img src="~/images/passwordInVisible.png" width="20" style="margin-left:25rem;margin-top:-5.4rem;" id="password-visibility" onclick="passwordVisibilityChanger()"/>
+
                                     </div>
                                     @if (ViewBag.LoginFailed != null)
                                     {
@@ -83,7 +85,24 @@
             </div>
         </div>
     </div>
+
 }
+<script>
+
+    function passwordVisibilityChanger() {
+        var password = document.getElementById('password');
+
+        if (password.type == 'password') {
+            password.type = 'text';
+            document.getElementById('password-visibility').src = '/images/passwordVisible.png';
+        } else {
+            password.type = 'password';
+            document.getElementById('password-visibility').src = '/images/passwordInVisible.png';
+
+        }
+
+    }
+</script>
 
 
 
