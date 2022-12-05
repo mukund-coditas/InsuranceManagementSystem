@@ -4,6 +4,7 @@
     ViewBag.Title = "AutomobileInsurance";
 }
 
+
 <style>
 
     body {
@@ -25,6 +26,12 @@
     option {
         background-color: white;
         color: black;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 
     select {
@@ -67,24 +74,24 @@
             <div class="form-group" style="margin-left: 5rem; margin-bottom: 0">
                 @Html.LabelFor(model => model.VehicleModel, htmlAttributes: new { @class = "control-label col-md-4", @style = "margin-left:-1rem;" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.VehicleModel, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Vehicle Model", @style = "margin-left:1rem; height:4rem;" } })
-                    @Html.ValidationMessageFor(model => model.VehicleModel, "", new { @class = "text-danger", @style = "margin-left:1rem;" })
+                    @Html.EditorFor(model => model.VehicleModel, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Vehicle Model", required = "required", @style = "margin-left:1rem; height:4rem;" } })
+                    @Html.ValidationMessageFor(model => model.VehicleModel, "", new { @class = "text-danger", @style = "margin-left:1rem;font-weight:bold" })
                 </div>
             </div>
 
             <div class="form-group" style="margin-left: 5rem; margin-bottom: 0">
                 @Html.LabelFor(model => model.VehicleNumber, htmlAttributes: new { @class = "control-label col-md-3", @style = "margin-left:1.2rem;" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.VehicleNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Vehicle Number", @style = "margin-left:1rem; height:4rem;" } })
-                    @Html.ValidationMessageFor(model => model.VehicleNumber, "", new { @class = "text-danger", @style = "margin-left:1rem;" })
+                    @Html.EditorFor(model => model.VehicleNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "eg. KA-03-HA-1985", required = "required", @style = "margin-left:1rem; height:4rem;" } })
+                    @Html.ValidationMessageFor(model => model.VehicleNumber, "", new { @class = "text-danger", @style = "margin-left:1rem;font-weight:bold" })
                 </div>
             </div>
 
             <div class="form-group" style="margin-left: 5rem; margin-bottom: 0">
                 @Html.LabelFor(model => model.VehicleAge, htmlAttributes: new { @class = "control-label col-md-5", @style = "margin-left:-6rem;" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.VehicleAge, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Vehicle Age(Months)", @style = "margin-left:1rem; height:4rem;" } })
-                    @Html.ValidationMessageFor(model => model.VehicleAge, "", new { @class = "text-danger", @style = "margin-left:1rem;" })
+                    @Html.EditorFor(model => model.VehicleAge, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Vehicle Age(Months)", @Value = "", required = "required", @style = "margin-left:1rem; height:4rem;" } })
+                    @Html.ValidationMessageFor(model => model.VehicleAge, "", new { @class = "text-danger", @style = "margin-left:1rem;font-weight:bold" })
                 </div>
             </div>
 
@@ -93,8 +100,8 @@
             <div class="form-group" style="margin-left: 5rem; margin-bottom: 2rem">
                 @Html.LabelFor(model => model.PlanDuration, htmlAttributes: new { @class = "control-label col-md-4", @style = "margin-left:-1rem" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.PlanDuration, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter PlanDuration (Years)", @style = "margin-left:1rem; height:4rem;" } })
-                    @Html.ValidationMessageFor(model => model.PlanDuration, "", new { @class = "text-danger", @style = "margin-left:1rem;" })
+                    @Html.EditorFor(model => model.PlanDuration, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter PlanDuration (Years)", @Value = "", required = "required", @style = "margin-left:1rem; height:4rem;" } })
+                    @Html.ValidationMessageFor(model => model.PlanDuration, "", new { @class = "text-danger", @style = "margin-left:1rem;font-weight:bold" })
                 </div>
             </div>
 

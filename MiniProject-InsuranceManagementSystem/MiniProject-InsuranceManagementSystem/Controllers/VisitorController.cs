@@ -9,7 +9,6 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 {
     public class VisitorController : Controller
     {
-        // GET: Visitor
 
         InsuranceManagementSystemDbEntities1 entities;
 
@@ -23,7 +22,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var insurances = entities.Insurances.OrderByDescending(x => x.ReleaseDate).ToList();
+            var insurances = entities.Insurances.Where(x => (x.InsuranceType != "Pension Plans")).OrderByDescending(x => x.ReleaseDate).ToList();
 
             return View(insurances);
         }
@@ -32,7 +31,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         public  ActionResult Index(string userChoice)
         {
 
-            var allInsurances = entities.Insurances.ToList();
+            var allInsurances = entities.Insurances.Where(x=>(x.InsuranceType!="Pension Plans")).ToList();
 
             string[] keywords = userChoice.ToLower().Split(' ');
 

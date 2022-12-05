@@ -62,5 +62,20 @@ namespace MiniProject_InsuranceManagementSystem.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getAutomobileInsurancePendingRequests_Result>("sp_getAutomobileInsurancePendingRequests");
         }
+    
+        public virtual ObjectResult<sp_getTravelInsurancePendingRequest_Result> sp_getTravelInsurancePendingRequest()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getTravelInsurancePendingRequest_Result>("sp_getTravelInsurancePendingRequest");
+        }
+    
+        public virtual ObjectResult<sp_getHealthInsurancePendingRequest_Result> sp_getHealthInsurancePendingRequest()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getHealthInsurancePendingRequest_Result>("sp_getHealthInsurancePendingRequest");
+        }
+    
+        public virtual ObjectResult<sp_getPensionPlanPendingRequest_Result> sp_getPensionPlanPendingRequest()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getPensionPlanPendingRequest_Result>("sp_getPensionPlanPendingRequest");
+        }
     }
 }

@@ -46,9 +46,24 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
 
-                var pendingRequestsForHomeInsurance = entities.sp_getAutomobileInsurancePendingRequests();
+                var pendingRequestsForAutomobileInsurance = entities.sp_getAutomobileInsurancePendingRequests();
 
-                return View(pendingRequestsForHomeInsurance);
+                return View(pendingRequestsForAutomobileInsurance);
+            }
+
+            return RedirectToAction("AccessDenied", "SuccessFailure");
+
+        }
+
+
+        public ActionResult TravelInsurancePendingRequests()
+        {
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+            {
+
+                var pendingRequestsForTravelInsurance = entities.sp_getTravelInsurancePendingRequest();
+
+                return View(pendingRequestsForTravelInsurance);
             }
 
             return RedirectToAction("AccessDenied", "SuccessFailure");
@@ -70,7 +85,39 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
     }
 
 
-    public ActionResult VerifyRequest()
+        public ActionResult HealthInsurancePendingRequests()
+        {
+
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+            {
+
+                var pendingRequestsForHealthInsurance = entities.sp_getHealthInsurancePendingRequest();
+
+                return View(pendingRequestsForHealthInsurance);
+            }
+
+            return RedirectToAction("AccessDenied", "SuccessFailure");
+
+        }
+
+
+        public ActionResult PensionPlanPendingRequests()
+        {
+
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
+            {
+
+                var pendingRequestsForPensionPlan = entities.sp_getPensionPlanPendingRequest();
+
+                return View(pendingRequestsForPensionPlan);
+            }
+
+            return RedirectToAction("AccessDenied", "SuccessFailure");
+
+        }
+
+
+        public ActionResult VerifyRequest()
         {
             return View();
         }

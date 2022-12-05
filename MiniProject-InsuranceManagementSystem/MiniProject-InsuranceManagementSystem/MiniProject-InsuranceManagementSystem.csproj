@@ -189,7 +189,16 @@
     <Compile Include="Models\sp_getAutomobileInsurancePendingRequests_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_getHealthInsurancePendingRequest_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_getHomeInsurancePendingRequests_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getPensionPlanPendingRequest_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_getTravelInsurancePendingRequest_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_getYourInsurances_Result.cs">
@@ -201,6 +210,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="PensionCalculator\Pension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +311,9 @@
     <Content Include="Views\User\LifeInsurance.cshtml" />
     <Content Include="Views\User\HealthInsurance.cshtml" />
     <Content Include="Views\User\ChooseInsurance.cshtml" />
+    <Content Include="Views\Admin\TravelInsurancePendingRequests.cshtml" />
+    <Content Include="Views\Admin\HealthInsurancePendingRequests.cshtml" />
+    <Content Include="Views\Admin\PensionPlanPendingRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,14 +11,27 @@ namespace MiniProject_InsuranceManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AutomobileInsurance
     {
         public Nullable<int> CustomerId { get; set; }
         public string VehicleType { get; set; }
+
+        [Required(ErrorMessage = "VehicleModel field is required")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "At least 3 characters")]
         public string VehicleModel { get; set; }
+
+        [Required(ErrorMessage = "VehicleNumber field is required")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "At least 5 characters")]
         public string VehicleNumber { get; set; }
+
+        [Required(ErrorMessage = "VehicleAge field is required")]
+        [Range(1, 100, ErrorMessage = "VehicleAge must be in range of 1-500 months")]
         public int VehicleAge { get; set; }
+
+        [Required(ErrorMessage = "PlanDuration field is required")]
+        [Range(1, 100, ErrorMessage = "PlanDuration must be in range of 1-100 years")]
         public int PlanDuration { get; set; }
         public int id { get; set; }
     

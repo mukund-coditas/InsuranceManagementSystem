@@ -100,6 +100,9 @@
         let selectListItem = document.querySelector('#insurances').value;
         document.querySelector('#yearlypremium').placeholder = 'Enter yearly premium(Rs.)';
         document.querySelector('#yearlypremiumlabel').textContent = 'Yearly Premium';
+        document.querySelector('#amount').disabled = '';
+        document.querySelector('#yearlypremium').disabled = '';
+
 
         let items;
 
@@ -123,6 +126,14 @@
         else if (selectListItem == 'Health Insurance') {
             items = ['Healthy Person', 'Diseased Person'];
         }
+
+        else if (selectListItem == 'Pension Plans') {
+            items = ['Government Servent', 'Non-Government Servent'];
+            document.querySelector('#amount').disabled = 'disabled';
+            document.querySelector('#yearlypremium').disabled = 'disabled';
+
+        }
+
         var options;
         for (var item of items) {
             options += "<option>" + item + "</option>"

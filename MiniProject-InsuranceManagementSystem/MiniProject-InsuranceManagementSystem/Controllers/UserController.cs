@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Text;
 using System.Web.Mvc;
+using MiniProject_InsuranceManagementSystem.PensionCalculator;
 
 namespace MiniProject_InsuranceManagementSystem.Controllers
 {
@@ -132,8 +133,49 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult HealthInsurance()
         {
-            return View();
+            if (Session["Customer"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("FillCustomerDetails");
+
+
         }
+
+        [HttpPost]
+        public ActionResult HealthInsurance(string age)
+        {
+            try
+            {
+                HealthInsurance healthInsurance = new HealthInsurance();
+
+                var customer = (Customer)Session["Customer"];
+
+                healthInsurance.Age = Convert.ToInt32(age);
+                healthInsurance.HealthCondition = Request.Form["health-condition"].ToString();
+                healthInsurance.Gender = Request.Form["gender"].ToString();
+                healthInsurance.PlanDuration = Convert.ToInt32(Request.Form["planDuration"]);
+                healthInsurance.InsuranceAmount = 0;
+                
+
+                customer.HealthInsurances.Add(healthInsurance);
+
+                var listofSuggestedInsurancePolicies = (from item in entities.Insurances
+                                                        where item.InsuranceType == "Health Insurance" &&
+                                                       item.SubType == healthInsurance.HealthCondition
+                                                        select item).ToList();
+
+                Session["Customer"] = customer;
+                Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
+                return RedirectToAction("PurchaseNewInsurance");
+            }
+            catch
+            {
+                return RedirectToAction("Failure", "SuccessFailure");
+            }
+
+        }
+
 
         public ActionResult LifeInsurance()
         {
@@ -180,12 +222,61 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult PensionPlans()
         {
-            return View();
+
+            if (Session["Customer"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("FillCustomerDetails");
         }
+
+        [HttpPost]
+        public ActionResult PensionPlans(string age)
+        {
+            try
+            {
+                PensionPlan pensionPlan = new PensionPlan();
+
+                var customer = (Customer)Session["Customer"];
+
+                pensionPlan.Age = Convert.ToInt32(age);
+                pensionPlan.MonthlyIncome = Convert.ToInt64(Request.Form["monthlyIncome"]);
+                pensionPlan.Occupation = Request.Form["occupation"].ToString(); 
+                pensionPlan.PensionStartYear = DateTime.Parse(Request.Form["pensionStartsFrom"].ToString());
+                string TypeOfServent = Request.Form["servent-type"].ToString();
+
+                var PensionAmount = Pension.CalculatePension(pensionPlan.MonthlyIncome,pensionPlan.PensionStartYear);
+
+                pensionPlan.PensionAmount = PensionAmount;
+
+                customer.PensionPlans.Add(pensionPlan);
+
+                var listofSuggestedInsurancePolicies = (from item in entities.Insurances
+                                                        where item.InsuranceType == "Pension Plans" &&
+                                                       item.SubType == TypeOfServent
+                                                        select item).ToList();
+
+                Session["Customer"] = customer;
+                Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
+                return RedirectToAction("PurchaseNewInsurance");
+            }
+            catch
+            {
+                return RedirectToAction("Failure", "SuccessFailure");
+            }
+
+        }
+
+
+
 
         public ActionResult TravelInsurance()
         {
-            return View();
+            if (Session["Customer"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("FillCustomerDetails");
         }
 
 

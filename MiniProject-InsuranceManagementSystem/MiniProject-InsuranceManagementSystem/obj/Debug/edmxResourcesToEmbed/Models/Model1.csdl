@@ -347,6 +347,9 @@
       <Parameter Name="CurrentUserId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="sp_getAutomobileInsurancePendingRequests" ReturnType="Collection(InsuranceManagementSystemDbModel.sp_getAutomobileInsurancePendingRequests_Result)" />
+    <FunctionImport Name="sp_getTravelInsurancePendingRequest" ReturnType="Collection(InsuranceManagementSystemDbModel.sp_getTravelInsurancePendingRequest_Result)" />
+    <FunctionImport Name="sp_getHealthInsurancePendingRequest" ReturnType="Collection(InsuranceManagementSystemDbModel.sp_getHealthInsurancePendingRequest_Result)" />
+    <FunctionImport Name="sp_getPensionPlanPendingRequest" ReturnType="Collection(InsuranceManagementSystemDbModel.sp_getPensionPlanPendingRequest_Result)" />
   </EntityContainer>
   <ComplexType Name="sp_getAllVerifiedRequests_Result">
     <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" />
@@ -392,5 +395,47 @@
     <Property Type="Int32" Name="VehicleAge" Nullable="false" />
     <Property Type="String" Name="VehicleNumber" Nullable="false" MaxLength="60" />
     <Property Type="Int32" Name="PlanDuration" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getTravelInsurancePendingRequest_Result">
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="60" />
+    <Property Type="Int64" Name="MobileNumber" Nullable="false" />
+    <Property Type="Int32" Name="PurchaseId" Nullable="false" />
+    <Property Type="String" Name="InsuranceType" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="SubType" Nullable="true" MaxLength="60" />
+    <Property Type="DateTime" Name="DateOfPurchase" Nullable="true" />
+    <Property Type="String" Name="SourceCountry" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="DestinationCountry" Nullable="false" MaxLength="60" />
+    <Property Type="Int32" Name="Age" Nullable="false" />
+    <Property Type="String" Name="HealthCondition" Nullable="true" MaxLength="60" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" />
+    <Property Type="DateTime" Name="EndDate" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getHealthInsurancePendingRequest_Result">
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="60" />
+    <Property Type="Int64" Name="MobileNumber" Nullable="false" />
+    <Property Type="Int32" Name="PurchaseId" Nullable="false" />
+    <Property Type="String" Name="InsuranceType" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="SubType" Nullable="true" MaxLength="60" />
+    <Property Type="DateTime" Name="DateOfPurchase" Nullable="true" />
+    <Property Type="String" Name="HealthCondition" Nullable="true" MaxLength="60" />
+    <Property Type="String" Name="Gender" Nullable="false" MaxLength="60" />
+    <Property Type="Int32" Name="PlanDuration" Nullable="false" />
+    <Property Type="Int32" Name="Age" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_getPensionPlanPendingRequest_Result">
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="60" />
+    <Property Type="Int64" Name="MobileNumber" Nullable="false" />
+    <Property Type="Int32" Name="PurchaseId" Nullable="false" />
+    <Property Type="String" Name="InsuranceType" Nullable="false" MaxLength="60" />
+    <Property Type="String" Name="SubType" Nullable="true" MaxLength="60" />
+    <Property Type="DateTime" Name="DateOfPurchase" Nullable="true" />
+    <Property Type="Int64" Name="MonthlyIncome" Nullable="false" />
+    <Property Type="String" Name="Occupation" Nullable="false" MaxLength="60" />
+    <Property Type="DateTime" Name="PensionStartYear" Nullable="false" />
+    <Property Type="Int32" Name="Age" Nullable="false" />
+    <Property Type="Int64" Name="PensionAmount" Nullable="true" />
   </ComplexType>
 </Schema>
