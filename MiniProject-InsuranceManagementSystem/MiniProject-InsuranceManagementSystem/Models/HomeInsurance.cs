@@ -11,33 +11,16 @@ namespace MiniProject_InsuranceManagementSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class HomeInsurance
     {
         public Nullable<int> CustomerId { get; set; }
         public string BuildingType { get; set; }
-
-        [Required(ErrorMessage = "FloorArea field is required")]
-        [Range(100, 10000000, ErrorMessage = "FloorArea is not valid")]
         public Nullable<int> FloorArea { get; set; }
-
-        [Required(ErrorMessage = "City field is required")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "City is not valid")]
         public string City { get; set; }
-
-        [Required(ErrorMessage = "HouseNumber field is required")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "At least 5 characters")]
         public string HouseNumber { get; set; }
-
-        [Required(ErrorMessage = "Valuation field is required")]
-        [Range(100, 9999999999999, ErrorMessage = "Valuation is not valid")]
         public long Valuation { get; set; }
-
-        [Required(ErrorMessage = "PlanDuration field is required")]
-        [Range(1, 100, ErrorMessage = "PlanDuration must be in range of 1-100 years")]
         public int PlanDuration { get; set; }
-
         public int id { get; set; }
     
         public virtual Customer Customer { get; set; }

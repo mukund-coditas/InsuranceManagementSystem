@@ -20,6 +20,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         }
 
 
+        [HttpGet]
         public ActionResult Index()
         {
             var insurances = entities.Insurances.OrderByDescending(x => x.ReleaseDate).ToList();
@@ -42,16 +43,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                                               || (p.InsuranceType.ToLower().Contains(keyword))
                                               || (p.InsuranceProvider.ToLower().Contains(keyword))).ToList();
             }
-            ViewBag.insuranceSearched = userChoice;
-            if (allInsurances.Count > 0)
-            {
-                return View(allInsurances);
-            }
-            else
-            {
 
-                return RedirectToAction("Index");
-            }
+            ViewBag.insuranceSearched = userChoice;
+
+            return View(allInsurances);
+            
 
 
         }
@@ -62,31 +58,5 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         }
 
-        //public ActionResult Search()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //public ActionResult Search(string userChoice)
-        //{
-
-        //    var insurances = entities.Insurances;
-            
-
-        //    string[] keywords = userChoice.Split(", ");
-
-        //    foreach (string keyword in keywords)
-        //    {
-        //        insurances = insurances.Where(p => (p.InsuranceType.Contains(keyword))
-        //                                      || (p.InsuranceProvider.Contains(keyword));
-                                              
-        //    }
-        //    //TempData["Products"]= JsonSerializer.Serialize(products);
-        //    ViewBag.productsearched = userChoice;
-        //    return View(products);
-
-
-        //}
     }
 }

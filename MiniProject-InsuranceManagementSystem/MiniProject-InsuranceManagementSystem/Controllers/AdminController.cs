@@ -50,46 +50,25 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 return View(pendingRequestsForHomeInsurance);
             }
+
             return RedirectToAction("AccessDenied", "SuccessFailure");
 
         }
+
+
         public ActionResult HomeInsurancePendingRequests()
         {
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
                 var pendingRequestsForHomeInsurance = entities.sp_getHomeInsurancePendingRequests();
 
-            //var pendingRequestsForHomeInsurance = (from customer in entities.Customers
-            //              join purchased in entities.Purchaseds
-            //              on customer.CustomerId equals
-            //              purchased.CustomerId
-            //              join insurance in entities.Insurances
-            //              on purchased.InsuranceId equals insurance.InsuranceId
-            //              join homeInurance in entities.HomeInsurances
-            //              on customer.CustomerId equals homeInurance.CustomerId
-            //              where purchased.ApprovalStatus == "Pending"
-            //              select new CustomerRequestHomeInsurance()
-            //              {
-            //                  FirstName = customer.FirstName,
-            //                  LastName = customer.LastName,
-            //                  MobileNumber = customer.MobileNumber.ToString(),
-            //                  PurchasedId = purchased.PurchaseId,
-            //                  InsuranceType = insurance.InsuranceType,
-            //                  SubType = insurance.SubType,
-            //                  PurchasedDate = (DateTime)purchased.DateOfPurchase,
-            //                  HouseValuation= homeInurance.Valuation,
-            //                  City=homeInurance.City,
-            //                  PlanDuration=homeInurance.PlanDuration,
-            //                  HouseNumber=homeInurance.HouseNumber,
-            //                  FloorArea= (int)homeInurance.FloorArea           
-
-            //              }).ToList();
-
-            return View(pendingRequestsForHomeInsurance);
+                return View(pendingRequestsForHomeInsurance);
           }           
+
         return RedirectToAction("AccessDenied", "SuccessFailure");
 
     }
+
 
     public ActionResult VerifyRequest()
         {
@@ -134,24 +113,6 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
                 var listOfVerifiedRequests = entities.sp_getAllVerifiedRequests();
-
-                //var listOfVerifiedRequests = (from customer in entities.Customers
-                //              join purchased in entities.Purchaseds
-                //              on customer.CustomerId equals
-                //              purchased.CustomerId
-                //              join insurance in entities.Insurances
-                //              on purchased.InsuranceId equals insurance.InsuranceId
-                //              where purchased.ApprovalStatus == "Approved"
-                //              select new CustomerStatus()
-                //              {
-                //                  FirstName = customer.FirstName,
-                //                  LastName = customer.LastName,
-                //                  MobileNumber = customer.MobileNumber.ToString(),
-                //                  InsuranceType = insurance.InsuranceType,
-                //                  SubType = insurance.SubType,
-                //                  PurchasedDate = (DateTime)purchased.DateOfPurchase,
-
-                //              }).ToList();
 
                 return View(listOfVerifiedRequests);
             }

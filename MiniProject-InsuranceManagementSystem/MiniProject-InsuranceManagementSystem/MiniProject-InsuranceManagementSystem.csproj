@@ -135,6 +135,7 @@
     <Compile Include="Controllers\SuccessFailureController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VisitorController.cs" />
+    <Compile Include="Encryption\Encrypt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

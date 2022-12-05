@@ -124,7 +124,7 @@
     </Key>
     <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Username" Type="varchar" MaxLength="60" Nullable="false" />
-    <Property Name="Password" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="80" Nullable="false" />
     <Property Name="FirstName" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="RegistrationDate" Type="date" Nullable="false" />

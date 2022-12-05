@@ -54,7 +54,6 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         public ActionResult FillCustomerDetails(Customer customer)
         {
 
-
             if (ModelState.IsValid)
             {
                 customer.UserId = Convert.ToInt32(Session["CurrentUserId"]);
@@ -83,6 +82,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         [HttpPost]
          public ActionResult ConfirmationOfInsurancePurchase(string InsuranceId)
         {
+
             var PuchasedDetails = new Purchased();
             var currentCustomer = (Customer)Session["Customer"];
 
@@ -119,10 +119,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 customer.HomeInsurances.Add(homeInsurance);
 
                 var listofSuggestedInsurancePolicies = (from item in entities.Insurances  where item.InsuranceType == "Home Insurance" &&
-                                  item.SubType == homeInsurance.BuildingType select item).ToList();
+                                                         item.SubType == homeInsurance.BuildingType select item).ToList();
 
                 Session["Customer"] = customer;
                 Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
+
                 return RedirectToAction("PurchaseNewInsurance");
             }
             return View();
@@ -151,6 +152,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             return RedirectToAction("FillCustomerDetails");
         }
 
+
         [HttpPost]
         public ActionResult AutomobileInsurance(AutomobileInsurance automobileInsurance)
         {
@@ -169,7 +171,9 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 Session["Customer"] = customer;
                 Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
                 return RedirectToAction("PurchaseNewInsurance");
+
             }
+
             return View();
 
         }
@@ -181,31 +185,47 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult TravelInsurance()
         {
-            if (Session["Customer"] != null)
-            {
-                TravelInsurance travelInsurance = new TravelInsurance();
-
-                return View(travelInsurance);
-            }
-
-            return RedirectToAction("FillCustomerDetails");
+            return View();
         }
 
 
         [HttpPost]
-        public ActionResult TravelInsurance(TravelInsurance travelInsurance)
+        public ActionResult TravelInsurance(string age)
         {
 
-            if (ModelState.IsValid)
+            try
             {
-              //
+                TravelInsurance travelInsurance = new TravelInsurance();
+
+                var customer = (Customer)Session["Customer"];
+
+                travelInsurance.Age = Convert.ToInt32(age);
+                travelInsurance.HealthCondition = Request.Form["health-condition"].ToString();
+                travelInsurance.DestinationCountry = Request.Form["destinationCountry"].ToString();
+                travelInsurance.SourceCountry = Request.Form["sourceCountry"].ToString();
+                travelInsurance.InsuranceAmount = 0;
+                travelInsurance.StartDate = DateTime.Parse(Request.Form["startDate"].ToString());
+                travelInsurance.EndDate = DateTime.Parse(Request.Form["endDate"].ToString());
+
+                customer.TravelInsurances.Add(travelInsurance);
+
+                var listofSuggestedInsurancePolicies = (from item in entities.Insurances where item.InsuranceType == "Travel Insurance" &&
+                                                       item.SubType == travelInsurance.HealthCondition select item).ToList();
+
+                Session["Customer"] = customer;
+                Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
+                return RedirectToAction("PurchaseNewInsurance");
+            }
+            catch
+            {
+                return RedirectToAction("Failure", "SuccessFailure");
             }
 
-            return View();
+            
         }
 
             public ActionResult YourInsurances()
-          {
+           {
 
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
@@ -214,40 +234,19 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 var listofYourInsurances = entities.sp_getYourInsurances(currentUserID);
 
-            //var listOfCustomers = ( from cts in entities.Customers where
-            //                     cts.UserId == currentUserID select cts).ToList();
+                return View(listofYourInsurances);
 
-
-            //var listofYourInsurances = (from customer in listOfCustomers
-            //           join purchased in entities.Purchaseds
-            //           on customer.CustomerId equals purchased.CustomerId
-            //           join insurance in entities.Insurances
-            //           on purchased.InsuranceId equals insurance.InsuranceId
-            //           select new CustomerStatus()
-            //           {
-            //               FirstName=customer.FirstName,
-            //               LastName=customer.LastName,
-            //               MobileNumber=customer.MobileNumber.ToString(),
-            //               ApprovalStatus=purchased.ApprovalStatus,
-            //               InsuranceType=insurance.InsuranceType,
-            //               SubType=insurance.SubType,
-            //               PurchasedDate= (DateTime)purchased.DateOfPurchase
-
-            //           }).ToList();
-
-
-            return View(listofYourInsurances);
            }
+
 
            return RedirectToAction("AccessDenied", "SuccessFailure");
 
          }
 
-
-    public ActionResult PurchasedSuccessfully()
-        {
-            return View();
-        }
+        public ActionResult PurchasedSuccessfully()
+           {
+                return View();
+            }
 
   
         public ActionResult ChooseInsurance()
@@ -256,7 +255,9 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
                 return View();
-                }
+
+            }
+
             return RedirectToAction("AccessDenied", "SuccessFailure");
 
         }

@@ -5,17 +5,7 @@
 }
 
 <style>
-    /* #search-button {
-        font-size: 1rem;
-        font-family: Arial;
-
-        border-width: 0.2rem;
-        color: #ffffff;
-        border-color: #a511c0;
-        background-color: #a511c0;
-        border-radius: 0.5rem;
-        margin-left: 0.1rem;
-    }*/
+  
 
     #search-bar {
         width: 40rem;
@@ -33,10 +23,9 @@
     }
 
     .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-        background-color: dodgerblue;
-        color:white;
+        background-color: #002d72;
+        color: white;
     }
-
 </style>
 
 <hr>
@@ -52,62 +41,74 @@
     </div>
 }
 
-    
-<table class="table table-striped table-hover" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
-    <thead style="background-color: #002d72; color:whitesmoke; font-size:medium">
-        <tr>
-            <th style="padding: 2rem" >
-                Insurance Name
-            </th>
-            <th style="padding: 2rem">
-                Insurance For
-            </th>
+@if (Model.Count() > 0)
+{
+    <table class="table table-striped table-hover" style="box-shadow: 0px 7px 41px -4px black; margin-top:4rem ">
+        <thead style="background-color: #002d72; color:whitesmoke; font-size:medium">
+            <tr>
+                <th style="padding: 2rem">
+                    Insurance Name
+                </th>
+                <th style="padding: 2rem">
+                    Insurance For
+                </th>
 
-            <th style="padding:2rem 2rem 2rem 0">
-                Yearly Premium (Rs.)
-            </th>
-            <th style="padding: 2rem 2rem 2rem 0">
-                Insurance Provider
-            </th>
-            <th style="padding: 2rem ">
-                Released Date
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-
-    @foreach (var item in Model)
-    {
-        <tbody>
-
-            <tr style="margin:1rem;">
-                <td style="padding:2rem;font-weight:bold;font-size:medium" >
-                    @Html.DisplayFor(modelItem => item.InsuranceType)
-                </td>
-                <td style="padding:2rem;">
-                    @Html.DisplayFor(modelItem => item.SubType)
-                </td>
-                <td style="padding:2rem;">
-                    @Html.DisplayFor(modelItem => item.YearlyPremium)
-                </td>
-                <td style="padding:2rem;">
-                    @Html.DisplayFor(modelItem => item.InsuranceProvider)
-                </td>
-                <td style="padding:2rem;">
-                    @item.ReleaseDate.ToShortDateString()
-                </td>
-                <td style="padding:2rem;">
-                    <button type="button" class="btn btn-danger btn-rounded btn-block">
-
-                        @Html.ActionLink("Purchase »", "LoginUser", "LoginRegister", new { area = "" }, new { @style = "color:white;" })
-
-                    </button>
-                </td>
-
+                <th style="padding:2rem 2rem 2rem 0">
+                    Yearly Premium (Rs.)
+                </th>
+                <th style="padding: 2rem 2rem 2rem 0">
+                    Insurance Provider
+                </th>
+                <th style="padding: 2rem ">
+                    Released Date
+                </th>
+                <th></th>
             </tr>
+        </thead>
 
-        </tbody>
-    }
+        @foreach (var item in Model)
+        {
+            <tbody>
 
-</table>
+                <tr style="margin:1rem;">
+                    <td style="padding:2rem;font-weight:bold;font-size:medium">
+                        @Html.DisplayFor(modelItem => item.InsuranceType)
+                    </td>
+                    <td style="padding:2rem;">
+                        @Html.DisplayFor(modelItem => item.SubType)
+                    </td>
+                    <td style="padding:2rem;">
+                        @Html.DisplayFor(modelItem => item.YearlyPremium)
+                    </td>
+                    <td style="padding:2rem;">
+                        @Html.DisplayFor(modelItem => item.InsuranceProvider)
+                    </td>
+                    <td style="padding:2rem;">
+                        @item.ReleaseDate.ToShortDateString()
+                    </td>
+                    <td style="padding:2rem;">
+                        <button type="button" class="btn btn-danger btn-rounded btn-block">
+
+                            @Html.ActionLink("Purchase »", "LoginUser", "LoginRegister", new { area = "" }, new { @style = "color:white;" })
+
+                        </button>
+                    </td>
+
+                </tr>
+
+            </tbody>
+        }
+
+    </table>
+}
+
+else
+{
+<br>
+<div style="text-align:center;margin-top:2rem">
+    <h2 style="color:#ce0606; text-align:center; font-weight:bold; background-color:white; display:inline;padding:1rem 2rem; border-radius:1rem">No Policy Available !</h2>
+</div>
+}
+
+
 

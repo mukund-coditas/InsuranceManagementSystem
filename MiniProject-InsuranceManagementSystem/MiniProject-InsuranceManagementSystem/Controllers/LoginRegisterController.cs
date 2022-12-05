@@ -1,4 +1,5 @@
-﻿using MiniProject_InsuranceManagementSystem.Models;
+﻿using MiniProject_InsuranceManagementSystem.Encryption;
+using MiniProject_InsuranceManagementSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,10 +19,6 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 entities = new InsuranceManagementSystemDbEntities1();
 
             }
-
-
-         
-
 
         public ActionResult Registration()
         {
@@ -54,7 +51,10 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 user.Username = username;
                 user.FirstName = firstname;
                 user.LastName = lastname;
-                user.Password = password;
+
+                var EncryptedPassword = Encrypt.EncryptPassword(password);
+
+                user.Password = EncryptedPassword;
                 user.CompanyName = company;
 
                 user.RoleId = Convert.ToInt32(CurrentRoleId);
@@ -64,7 +64,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 return RedirectToAction("RegisteredSuccessfully");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
@@ -81,17 +81,19 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 try
                 {
-                   
-                        var info = (from u in entities.Users  where u.Username == username && u.Password == password select u).FirstOrDefault();
+                        var Password = Encrypt.EncryptPassword(password);
 
-                        string ActionName = (from r in entities.Roles where info.RoleId == r.RoleId select r.RoleName).FirstOrDefault();
+                        var User = (from u in entities.Users  where u.Username == username && u.Password.Replace("\r\n","") == Password select u).FirstOrDefault();
+                        
+
+                        string ActionName = (from r in entities.Roles where User.RoleId == r.RoleId select r.RoleName).FirstOrDefault();
                         string ControllerName = ActionName;
                         ActionName += "ProfilePage";
-                         Session["CurrentUserId"]= info.UserId;
-                         Session["FirstName"] = info.FirstName;
-                         Session["LastName"] = info.LastName;
-                         Session["Username"] = info.Username;
-                         Session["IsAuthenticated"] = true;
+                        Session["CurrentUserId"]= User.UserId;
+                        Session["FirstName"] = User.FirstName;
+                        Session["LastName"] = User.LastName;
+                        Session["Username"] = User.Username;
+                        Session["IsAuthenticated"] = true;
 
                         return RedirectToAction(ActionName, ControllerName);
 

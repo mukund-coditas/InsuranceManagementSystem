@@ -53,13 +53,13 @@
                                     <div class="mb-4">
                                         <label class="form-label" for="username">Username</label>
 
-                                        <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Enter username" required />
+                                        <input type="text" id="username" name="username" class="form-control form-control-lg" placeholder="Enter username" required  minlength="3"/>
                                     </div>
 
                                     <div class="mb-2">
                                         <label class="form-label" for="password">Password</label>
 
-                                        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required/>
+                                        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Enter password" required minlength="3"/>
                                         <img src="~/images/passwordInVisible.png" width="20" style="margin-left:25rem;margin-top:-5.4rem;" id="password-visibility" onclick="passwordVisibilityChanger()"/>
 
                                     </div>
@@ -102,6 +102,7 @@
         }
 
     }
+
 </script>
 
 
