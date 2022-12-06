@@ -28,17 +28,17 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         }
 
         [HttpPost]
-        public  ActionResult Index(string userChoice)
+        public ActionResult Index(string userChoice)
         {
 
-            var allInsurances = entities.Insurances.Where(x=>(x.InsuranceType!="Pension Plans")).ToList();
+            var allInsurances = entities.Insurances.Where(x => (x.InsuranceType != "Pension Plans")).ToList();
 
             string[] keywords = userChoice.ToLower().Split(' ');
 
             foreach (string keyword in keywords)
             {
-                
-                allInsurances =  allInsurances.Where(p => (p.SubType.ToLower().Contains(keyword))
+
+                allInsurances = allInsurances.Where(p => (p.SubType.ToLower().Contains(keyword))
                                               || (p.InsuranceType.ToLower().Contains(keyword))
                                               || (p.InsuranceProvider.ToLower().Contains(keyword))).ToList();
             }
@@ -46,7 +46,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             ViewBag.insuranceSearched = userChoice;
 
             return View(allInsurances);
-            
+
 
 
         }

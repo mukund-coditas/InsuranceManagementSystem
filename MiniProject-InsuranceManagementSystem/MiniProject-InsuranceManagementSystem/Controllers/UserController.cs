@@ -28,7 +28,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         public ActionResult UserProfilePage()
         {
-            if (Session["IsAuthenticated"]!=null && (bool)Session["IsAuthenticated"])
+            if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
                 ViewBag.FirstName = Session["FirstName"];
                 ViewBag.LastName = Session["LastName"];
@@ -40,8 +40,8 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
         }
 
-       
-         public ActionResult FillCustomerDetails()
+
+        public ActionResult FillCustomerDetails()
         {
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
@@ -65,8 +65,8 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
             return View();
         }
-            
-        
+
+
 
         public ActionResult PurchasedInsurances()
         {
@@ -81,7 +81,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         }
 
         [HttpPost]
-         public ActionResult ConfirmationOfInsurancePurchase(string InsuranceId)
+        public ActionResult ConfirmationOfInsurancePurchase(string InsuranceId)
         {
 
             var PuchasedDetails = new Purchased();
@@ -101,11 +101,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
         public ActionResult HomeInsurance()
         {
             if (Session["Customer"] != null)
-           {
+            {
                 HomeInsurance homeInsurance = new HomeInsurance();
 
                 return View(homeInsurance);
-           }
+            }
             return RedirectToAction("FillCustomerDetails");
         }
 
@@ -119,7 +119,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 homeInsurance.BuildingType = Request.Form["building-type"].ToString();
                 customer.HomeInsurances.Add(homeInsurance);
 
-                var listofSuggestedInsurancePolicies = (from item in entities.Insurances  where item.InsuranceType == "Home Insurance" &&
+                var listofSuggestedInsurancePolicies = (from item in entities.Insurances where item.InsuranceType == "Home Insurance" &&
                                                          item.SubType == homeInsurance.BuildingType select item).ToList();
 
                 Session["Customer"] = customer;
@@ -156,14 +156,12 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 healthInsurance.Gender = Request.Form["gender"].ToString();
                 healthInsurance.PlanDuration = Convert.ToInt32(Request.Form["planDuration"]);
                 healthInsurance.InsuranceAmount = 0;
-                
+
 
                 customer.HealthInsurances.Add(healthInsurance);
 
-                var listofSuggestedInsurancePolicies = (from item in entities.Insurances
-                                                        where item.InsuranceType == "Health Insurance" &&
-                                                       item.SubType == healthInsurance.HealthCondition
-                                                        select item).ToList();
+                var listofSuggestedInsurancePolicies = (from item in entities.Insurances where item.InsuranceType == "Health Insurance" &&
+                                                       item.SubType == healthInsurance.HealthCondition select item).ToList();
 
                 Session["Customer"] = customer;
                 Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
@@ -175,7 +173,6 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             }
 
         }
-
 
         public ActionResult LifeInsurance()
         {
@@ -207,8 +204,10 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 customer.AutomobileInsurances.Add(automobileInsurance);
 
-                var listofSuggestedInsurancePolicies = (from item in entities.Insurances  where item.InsuranceType == "Automobile Insurance" &&
-                                                     item.SubType == automobileInsurance.VehicleType select item).ToList();
+                var listofSuggestedInsurancePolicies = (from item in entities.Insurances
+                                                        where item.InsuranceType == "Automobile Insurance" &&
+                                                     item.SubType == automobileInsurance.VehicleType
+                                                        select item).ToList();
 
                 Session["Customer"] = customer;
                 Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
@@ -241,11 +240,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 pensionPlan.Age = Convert.ToInt32(age);
                 pensionPlan.MonthlyIncome = Convert.ToInt64(Request.Form["monthlyIncome"]);
-                pensionPlan.Occupation = Request.Form["occupation"].ToString(); 
+                pensionPlan.Occupation = Request.Form["occupation"].ToString();
                 pensionPlan.PensionStartYear = DateTime.Parse(Request.Form["pensionStartsFrom"].ToString());
                 string TypeOfServent = Request.Form["servent-type"].ToString();
 
-                var PensionAmount = Pension.CalculatePension(pensionPlan.MonthlyIncome,pensionPlan.PensionStartYear);
+                var PensionAmount = Pension.CalculatePension(pensionPlan.MonthlyIncome, pensionPlan.PensionStartYear);
 
                 pensionPlan.PensionAmount = PensionAmount;
 
@@ -266,9 +265,6 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             }
 
         }
-
-
-
 
         public ActionResult TravelInsurance()
         {
@@ -300,8 +296,10 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 customer.TravelInsurances.Add(travelInsurance);
 
-                var listofSuggestedInsurancePolicies = (from item in entities.Insurances where item.InsuranceType == "Travel Insurance" &&
-                                                       item.SubType == travelInsurance.HealthCondition select item).ToList();
+                var listofSuggestedInsurancePolicies = (from item in entities.Insurances
+                                                        where item.InsuranceType == "Travel Insurance" &&
+                                                       item.SubType == travelInsurance.HealthCondition
+                                                        select item).ToList();
 
                 Session["Customer"] = customer;
                 Session["SuggestedInsurances"] = listofSuggestedInsurancePolicies;
@@ -312,11 +310,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 return RedirectToAction("Failure", "SuccessFailure");
             }
 
-            
+
         }
 
-            public ActionResult YourInsurances()
-           {
+        public ActionResult YourInsurances()
+        {
 
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
@@ -327,19 +325,19 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
 
                 return View(listofYourInsurances);
 
-           }
-
-
-           return RedirectToAction("AccessDenied", "SuccessFailure");
-
-         }
-
-        public ActionResult PurchasedSuccessfully()
-           {
-                return View();
             }
 
-  
+
+            return RedirectToAction("AccessDenied", "SuccessFailure");
+
+        }
+
+        public ActionResult PurchasedSuccessfully()
+        {
+            return View();
+        }
+
+
         public ActionResult ChooseInsurance()
 
         {
@@ -348,7 +346,6 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 return View();
 
             }
-
             return RedirectToAction("AccessDenied", "SuccessFailure");
 
         }

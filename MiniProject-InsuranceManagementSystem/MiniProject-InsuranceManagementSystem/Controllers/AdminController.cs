@@ -10,13 +10,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
     public class AdminController : Controller
     {
 
-
         InsuranceManagementSystemDbEntities1 entities;
 
         public AdminController()
         {
             entities = new InsuranceManagementSystemDbEntities1();
-
         }
 
 
@@ -25,8 +23,8 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             return View();
         }
 
-       public ActionResult AdminProfilePage()
-          {
+        public ActionResult AdminProfilePage()
+        {
 
             if (Session["IsAuthenticated"] != null && (bool)Session["IsAuthenticated"])
             {
@@ -39,7 +37,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             return RedirectToAction("AccessDenied", "SuccessFailure");
 
 
-          }
+        }
 
         public ActionResult AutomobileInsurancePendingRequests()
         {
@@ -78,11 +76,11 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 var pendingRequestsForHomeInsurance = entities.sp_getHomeInsurancePendingRequests();
 
                 return View(pendingRequestsForHomeInsurance);
-          }           
+            }
 
-        return RedirectToAction("AccessDenied", "SuccessFailure");
+            return RedirectToAction("AccessDenied", "SuccessFailure");
 
-    }
+        }
 
 
         public ActionResult HealthInsurancePendingRequests()
@@ -129,7 +127,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             {
                 int purchasedId = Convert.ToInt32(PurchasedId);
 
-                var currentRequest = (from p in entities.Purchaseds where p.PurchaseId == purchasedId  select p).SingleOrDefault();
+                var currentRequest = (from p in entities.Purchaseds where p.PurchaseId == purchasedId select p).SingleOrDefault();
 
                 currentRequest.ApprovalStatus = ApprovalStatus;
 
@@ -140,12 +138,12 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
             }
             catch
             {
-                return RedirectToAction("Failure","SuccessFailure");
+                return RedirectToAction("Failure", "SuccessFailure");
             }
         }
 
 
-       public ActionResult ChooseInsuranceType()
+        public ActionResult ChooseInsuranceType()
         {
             return View();
         }

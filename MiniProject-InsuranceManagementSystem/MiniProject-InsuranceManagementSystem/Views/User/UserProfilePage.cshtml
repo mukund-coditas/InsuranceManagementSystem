@@ -89,9 +89,15 @@
     </div>
 </section>
 
-@*<script>
- window.onload = function () {
-     var CurrentRole = document.getElementById('CurrentRoleId');
-        CurrentRole.value = 'Admin';
+<script>
+
+    window.onload = function () {
+                       document.getElementById('CurrentRoleId').style.visibility = "hidden";
+                       document.getElementById('nav-logout').style.visibility = "visible";
     }
-</script>*@
+
+    document.querySelector('#nav-logout').addEventListener('click', () => {
+        window.location.href = '/LoginRegister/LogoutUser';
+    });
+
+</script>

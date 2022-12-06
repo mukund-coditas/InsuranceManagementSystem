@@ -30,10 +30,19 @@
         color: white;
         border-color: none;
     }
+
     #amount,#filterparameter,#insuranceprovider,#yearlypremium {
         padding: 2rem;
         font-size:14px;
     }
+
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
 
 </style>
 
@@ -72,12 +81,13 @@
             </div>
             <div style="margin-bottom: 1.2rem; margin-left:11rem;">
                 <label for="amount" class="form-label">Coverage Amount  </label>
-                <input type="number" class="form-control" id="amount" name="amount" required placeholder="Enter Coverage amount (Rs)" min="100" max="1000000000000000">
+                <input type="number" class="form-control" id="amount" name="amount" required placeholder="Enter Coverage amount (Rs)" min="1000" max="1000000000000000">
             </div>
             <div style="margin-bottom: 1.2rem; margin-left: 11rem;" class="yearly-premium">
                 <label for="yearlypremium" id="yearlypremiumlabel" class="form-label">Yearly Premium</label>
                 <input type="number" class="form-control" id="yearlypremium" name="yearlypremium" required placeholder="Enter yearly premium (Rs)" min="100" max="1000000000000000">
             </div>
+            
             <div style="margin-bottom: 1.2rem; margin-left: 11rem;">
                 <label for="insuranceprovider" class="form-label">Insurance Provider</label>
                 <input type="text" class="form-control" id="insuranceprovider" name="insuranceprovider" required placeholder="Insurance Provider" minlength="2">

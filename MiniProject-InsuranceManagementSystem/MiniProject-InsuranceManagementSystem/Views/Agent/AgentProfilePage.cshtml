@@ -84,7 +84,18 @@
     </div>
 </section>
 
+<script>
 
+    window.onload = function () {
+        document.getElementById('CurrentRoleId').style.visibility = "hidden";
+        document.getElementById('nav-logout').style.visibility = "visible";
+    }
+
+    document.querySelector('#nav-logout').addEventListener('click', () => {
+        window.location.href = '/LoginRegister/LogoutUser';
+    });
+
+</script>
 
 
 

@@ -18,8 +18,6 @@ namespace MiniProject_InsuranceManagementSystem.Models
         public Nullable<int> CustomerId { get; set; }
         public string BuildingType { get; set; }
 
-        [Required(ErrorMessage = "FloorArea field is required")]
-        [Range(100, 10000000, ErrorMessage = "At least 100 sqft")]
         public Nullable<int> FloorArea { get; set; }
 
         [Required(ErrorMessage = "City field is required")]
@@ -30,12 +28,9 @@ namespace MiniProject_InsuranceManagementSystem.Models
         [StringLength(50, MinimumLength = 5, ErrorMessage = "At least 5 characters")]
         public string HouseNumber { get; set; }
 
-        [Required(ErrorMessage = "Valuation field is required")]
-        [Range(1000, 9999999999999, ErrorMessage = "At least Rs.1000")]
+ 
         public long Valuation { get; set; }
 
-        [Required(ErrorMessage = "PlanDuration field is required")]
-        [Range(1, 100, ErrorMessage = "PlanDuration must be in range of 1-100 years")]
         public int PlanDuration { get; set; }
         public int id { get; set; }
     

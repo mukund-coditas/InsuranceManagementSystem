@@ -46,8 +46,7 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 return View(insurance);
             }
             return RedirectToAction("AccessDenied", "SuccessFailure");
-            
-   
+             
         }
 
         [HttpPost]
@@ -58,6 +57,13 @@ namespace MiniProject_InsuranceManagementSystem.Controllers
                 insurance.InsuranceType = Request.Form["insurances"].ToString();
                 insurance.UserId = Convert.ToInt32(Session["CurrentUserId"]);
                 insurance.ReleaseDate = DateTime.Now;
+
+                if(insurance.InsuranceType.Equals("Pension Plans"))
+                {
+                    insurance.Amount = 0;
+                    insurance.YearlyPremium = 0;
+                }
+
                 entities.Insurances.Add(insurance);
                 entities.SaveChanges();
 

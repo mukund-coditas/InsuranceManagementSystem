@@ -10,14 +10,17 @@
         background-color: darkgray;
     }
 
-    h1 {
+    h1, h2 {
         color: whitesmoke;
         font-weight: bold;
         font-family: 'Segoe UI',Tahoma, Geneva, Verdana, sans-serif;
         text-align: center;
     }
 
-  
+    h2 {
+        color: darkslateblue;
+    }
+
 
     hr {
         color: ghostwhite;
@@ -110,3 +113,9 @@
     }
 
 </table>
+
+
+@if(Model== null)
+{
+    <hr><h2> No record found</h2><hr>
+}

@@ -43,7 +43,7 @@
 </style>
 
 <button class="btn btn-primary" style="margin-top:2rem;margin-bottom:1rem;margin-left:2rem;">
-    @Html.ActionLink("《 Go Back", "FillCustomerDetails", new { area = "" }, new { @style = "font-size:14px; color:white;" })
+    @Html.ActionLink("《 Go Back", "ChooseInsurance", new { area = "" }, new { @style = "font-size:14px; color:white;" })
 </button>
 
 <hr>
@@ -586,8 +586,9 @@
                     <input type="submit" value="Submit" class="btn btn-success btn-lg btn-block" />
                 </div>
             </div>
-            <p id="date-validation1" style="color:#fa2b2b;font-size:1.4rem;font-weight:bold;margin-top:0.5rem;margin-left:7rem; display:none">EndDate should be greater than StartDate !</p>
-            <p id="date-validation2" style="color:#fa2b2b;font-size:1.4rem;font-weight:bold;margin-top:0.5rem;margin-left:7rem; display:none">StartDate should be greater than Today's Date !</p>
+
+            <p id="date-validation1" style="color:#fa2b2b;font-size:1.4rem;font-weight:bold;margin-top:0.5rem;margin-left:7rem; display:none">End Date should be greater than Start Date !</p>
+            <p id="date-validation2" style="color:#fa2b2b;font-size:1.4rem;font-weight:bold;margin-top:0.5rem;margin-left:7rem; display:none">Start Date should be greater than Today's Date !</p>
 
         </div>
         </form>

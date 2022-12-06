@@ -44,7 +44,7 @@
 </style>
 
 <button class="btn btn-primary" style="margin-top:2rem;margin-bottom:1rem;margin-left:2rem;">
-    @Html.ActionLink("《 Go Back", "FillCustomerDetails", new { area = "" }, new { @style = "font-size:14px; color:white;" })
+    @Html.ActionLink("《 Go Back", "ChooseInsurance", new { area = "" }, new { @style = "font-size:14px; color:white;" })
 </button>
 
 <hr>
@@ -74,7 +74,7 @@
             <div class="form-group" style="margin-left: 5rem; margin-bottom: 0">
                 @Html.LabelFor(model => model.FloorArea, htmlAttributes: new { @class = "control-label col-md-4", @style = "margin-left:-3.5rem;" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.FloorArea, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "Enter FloorArea (sqft)", @style = "margin-left:1rem; height:4rem;" } })
+                    @Html.EditorFor(model => model.FloorArea, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "Enter FloorArea (sqft)",min="100",max="100000000", @style = "margin-left:1rem; height:4rem;" } })
                     @Html.ValidationMessageFor(model => model.FloorArea, "", new { @class = "text-danger", @style = "margin-left:1rem;font-weight:bold" })
                 </div>
             </div>
@@ -98,7 +98,7 @@
             <div class="form-group" style="margin-left:5rem;margin-bottom:0">
                 @Html.LabelFor(model => model.Valuation, htmlAttributes: new { @class = "control-label col-md-4", @style = "margin-left:-3.5rem;" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Valuation, new { htmlAttributes = new { @class = "form-control", @Value = "", required = "required", placeholder = "Enter Valuation (Rs)", @style = "margin-left:1rem; height:4rem;" } })
+                    @Html.EditorFor(model => model.Valuation, new { htmlAttributes = new { @class = "form-control", @Value = "", required = "required", min="1000",max= "9999999999999", placeholder = "Enter Valuation (Rs)", @style = "margin-left:1rem; height:4rem;" } })
                     @Html.ValidationMessageFor(model => model.Valuation, "", new { @class = "text-danger", @style = "margin-left:1rem;font-weight:bold" })
                 </div>
             </div>
@@ -106,7 +106,7 @@
             <div class="form-group" style="margin-left: 5rem; margin-bottom: 1rem">
                 @Html.LabelFor(model => model.PlanDuration, htmlAttributes: new { @class = "control-label col-md-4", @style = "margin-left:-1rem" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.PlanDuration, new { htmlAttributes = new { @class = "form-control",@Value="", required = "required", placeholder = "Enter PlanDuration (Years)", @style = "margin-left:1rem; height:4rem;" } })
+                    @Html.EditorFor(model => model.PlanDuration, new { htmlAttributes = new { @class = "form-control",@Value="", required = "required", min = "1", max = "100", placeholder = "Enter PlanDuration (Years)", @style = "margin-left:1rem; height:4rem;" } })
                     @Html.ValidationMessageFor(model => model.PlanDuration, "", new { @class = "text-danger", @style = "margin-left:1rem;font-weight:bold" })
                 </div>
             </div>

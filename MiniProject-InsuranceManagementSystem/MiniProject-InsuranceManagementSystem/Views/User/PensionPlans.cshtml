@@ -22,6 +22,12 @@
         text-align: center;
     }
 
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
     option {
         background-color: white;
         color: black;
@@ -38,7 +44,7 @@
 </style>
 
 <button class="btn btn-primary" style="margin-top:2rem;margin-bottom:1rem;margin-left:2rem;">
-    @Html.ActionLink("《 Go Back", "FillCustomerDetails", new { area = "" }, new { @style = "font-size:14px; color:white;" })
+    @Html.ActionLink("《 Go Back", "ChooseInsurance", new { area = "" }, new { @style = "font-size:14px; color:white;" })
 </button>
 
 <hr>
@@ -80,7 +86,7 @@
             <div class="form-group" style="margin-left:7rem">
 
                 <label class="form-label" for="monthlyIncome">Monthly Income</label>
-                <input type="number" id="monthlyIncome" name="monthlyIncome" class="form-control form-control-lg" required placeholder="Enter monthly income (Rs)" min="100" max="100000000000" />
+                <input type="number" id="monthlyIncome" name="monthlyIncome" class="form-control form-control-lg" required placeholder="Enter monthly income (Rs)" min="1000" max="100000000000" />
 
             </div>
 

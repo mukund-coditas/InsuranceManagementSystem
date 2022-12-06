@@ -20,16 +20,20 @@
             background-color: white;
             color: black;
         }
-        #logout:hover{
+        #nav-logout:hover{
             cursor:pointer;
         }
+
     </style>
 
     <script>
         window.onload = function () {
             document.getElementById('CurrentRoleId').style.visibility = "hidden";
-          
-        }
+            document.getElementById('nav-logout').style.visibility = "hidden";
+            document.getElementById('nav-profile').style.visibility = "hidden";
+            document.getElementById('nav-firstname').style.visibility = "hidden";
+
+           }
 
         function roleAssigner() {
             var CurrentRole = document.getElementById('CurrentRole');
@@ -56,23 +60,29 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav" style="font-weight:600; background-color:aliceblue; border-radius:0.8rem;">
                     <li>@Html.ActionLink("Login", "LoginUser", "LoginRegister", new { area = "" }, new { @style = "font-size:16px; color:black;" })</li>
-                    @*<li>@Html.ActionLink("ShowUsers", "Index", "LoginRegister", new { area = "" }, new {@style = "font-size:16px; color:black;" })</li>*@
                     <li>@Html.ActionLink("Register", "Registration", "LoginRegister", new { area = "" }, new { @style = "font-size:16px; color:black;" })</li>
-                    <li>@Html.ActionLink("View Insurances", "Index", "Visitor", new { area = "" }, new { @style = "font-size:16px; color:black;" })</li>
+                    <li>@Html.ActionLink("View Policies", "Index", "Visitor", new { area = "" }, new { @style = "font-size:16px; color:black;" })</li>
                 </ul>
 
                 <div>
-                    <select onchange="roleAssigner()" style="padding: 1rem; margin-left:2rem; background-color: #232325; border-color: #221f1f;color:white;font-size:medium;font-weight:bold" id="CurrentRoleId">
+                    <select onchange="roleAssigner()" style="padding: 1rem; margin-left: 2rem; background-color: #232325; border-color:#221f1f; color: white; font-size: medium; font-weight: bold" id="CurrentRoleId">
                         @*<option value="1">Register as Admin</option>*@
                         <option value="3"> Register as Agent</option>
                         <option selected value="2"> Register as User</option>
                     </select>
                 </div>
+
             </div>
-
-
-
-
+            <div style="margin-right:-12rem">
+                <img id="nav-logout" src="~/images/logoutT.png" width="32" />
+            </div>
+            <div style="margin-right:-2rem;margin-top:0.2rem;text-align:center">
+                <img id="nav-profile" src="~/images/profileicon.png" width="30"/>
+                @if (@Session["FirstName"] != null)
+                {
+                <p id="nav-firstname" style="color:white;margin-top:0.2rem;margin-bottom:0">@Session["FirstName"].ToString()</p>
+                }
+            </div>
         </div>
     </div>
 
