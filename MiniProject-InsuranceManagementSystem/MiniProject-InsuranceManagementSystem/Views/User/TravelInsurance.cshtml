@@ -50,11 +50,10 @@
 <h1>Apply for Travel Insurance</h1>
 <hr style="margin-bottom:3rem">
 
-@using (Html.BeginForm())
-{
 
 
-    <div style="border-radius: 1rem; box-shadow: 0px 7px 35px -4px black; background-color: white; margin: 1rem 31rem; padding: 2rem 0; ">
+<div style="border-radius: 1rem; box-shadow: 0px 7px 35px -4px black; background-color: white; margin: 1rem 31rem; padding: 2rem 0; ">
+    <form method="post" asp-action="TravelInsurance" asp-controller="User" onsubmit="return dateValidator();">
 
         <div class="form-horizontal" style="margin-left:4rem">
 
@@ -587,10 +586,40 @@
                     <input type="submit" value="Submit" class="btn btn-success btn-lg btn-block" />
                 </div>
             </div>
+            <p id="date-validation1" style="color:#fa2b2b;font-size:1.4rem;font-weight:bold;margin-top:0.5rem;margin-left:7rem; display:none">EndDate should be greater than StartDate !</p>
+            <p id="date-validation2" style="color:#fa2b2b;font-size:1.4rem;font-weight:bold;margin-top:0.5rem;margin-left:7rem; display:none">StartDate should be greater than Today's Date !</p>
 
         </div>
-        </div>
+        </form>
+</div>
 
+        
+
+
+<script>
+
+    function dateValidator() {
+
+        let startDate = document.getElementById('startDate').value;
+        let endDate = document.getElementById('endDate').value;
+
+        document.getElementById('date-validation1').style.display = 'none';
+        document.getElementById('date-validation2').style.display = 'none';
+
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+
+        if (Date.parse(startDate) >= Date.parse(endDate)) {
+            document.getElementById('date-validation1').style.display = 'block';
+            return false;
         }
+        else if (Date.parse(startDate) < today) {
+            document.getElementById('date-validation2').style.display = 'block';
+            return false;
+        }
+        return true;
+    }
 
+</script>
         

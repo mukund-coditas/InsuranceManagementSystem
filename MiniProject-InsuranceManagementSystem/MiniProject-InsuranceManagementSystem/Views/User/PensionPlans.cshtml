@@ -45,10 +45,10 @@
 <h1>Apply for Pension Plan</h1>
 <hr style="margin-bottom:3rem">
 
-@using (Html.BeginForm())
-{
 
-    <div style="border-radius: 1rem; box-shadow: 0px 7px 35px -4px black; background-color: white; margin: 1rem 30rem; padding: 2rem 0; ">
+
+<div style="border-radius: 1rem; box-shadow: 0px 7px 35px -4px black; background-color: white; margin: 1rem 30rem; padding: 2rem 0; ">
+    <form method="post" asp-action="PensionPlans" asp-controller="User" onsubmit="return pensionStartDateValidator()">
 
         <div class="form-horizontal" style="margin-left:4rem">
 
@@ -98,10 +98,35 @@
                     <input type="submit" value="Submit" class="btn btn-success btn-lg btn-block" />
                 </div>
             </div>
+            <p id="pensionstartdate-validation" style="color:#fa2b2b;font-size:1.4rem;font-weight:bold;margin-top:0.5rem;margin-left:4rem; display:none">Pension Start Date should be greater than Today's Date !</p>
+
         </div>
-    </div>
 
-}
+</form>
+</div>
 
+
+
+
+<script>
+
+    function pensionStartDateValidator() {
+
+        let pensionStartDate = document.getElementById('pensionStartsFrom').value;
+        document.getElementById('pensionstartdate-validation').style.display = 'none';
+
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (Date.parse(pensionStartDate) < today) {
+            document.getElementById('pensionstartdate-validation').style.display = 'block';
+            return false;
+        }
+
+        return true;
+
+    }
+
+</script>
 
 
